@@ -8,11 +8,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { products } from "@/data/products";
 
 const categories = [
-  { name: 'Women', count: '120+', image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', link: '/shop?category=women' },
-  { name: 'Men', count: '150+', image: 'https://images.unsplash.com/photo-1516257984-b1b4d707412e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', link: '/shop?category=men' },
-  { name: 'Dresses', count: '80+', image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', link: '/shop?category=dresses' },
-  { name: 'T-Shirts', count: '100+', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', link: '/shop?category=t-shirts' },
-  { name: 'Accessories', count: '60+', image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', link: '/shop?category=accessories' },
+  { name: 'Women', count: '120+', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop', link: '/shop?category=women' },
+  { name: 'Men', count: '150+', image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=800&auto=format&fit=crop', link: '/shop?category=men' },
+  { name: 'Dresses', count: '80+', image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800&auto=format&fit=crop', link: '/shop?category=dresses' },
+  { name: 'T-Shirts', count: '100+', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop', link: '/shop?category=t-shirts' },
+  { name: 'Accessories', count: '60+', image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop', link: '/shop?category=accessories' },
 ];
 
 export default function Home() {

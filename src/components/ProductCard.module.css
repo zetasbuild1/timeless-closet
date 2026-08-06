@@ -189,3 +189,13 @@
   color: var(--color-text-light);
   margin-left: 0.25rem;
 }
+
+@media (max-width: 480px) {
+  .info {
+    align-items: center;
+    text-align: center;
+  }
+  .priceRow, .ratingRow {
+    justify-content: center;
+  }
+}

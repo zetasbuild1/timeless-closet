@@ -326,11 +326,24 @@
 
 @media (max-width: 480px) {
   .productGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(auto, 340px);
+    justify-content: center;
+    gap: 2rem;
   }
   .sortControls {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+  .pageTitle {
+    font-size: 1.4rem;
+  }
+  .mobileFilterBtn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    gap: 0.25rem;
+  }
+  .mobileFilterRow {
+    gap: 0.5rem;
   }
 }

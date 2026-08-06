@@ -24,8 +24,8 @@ export default function ScrollReveal({
         if (ref.current) observer.unobserve(ref.current);
       }
     }, { 
-      threshold: 0.1, // Trigger when 10% of the element is visible
-      rootMargin: "0px 0px -50px 0px" // Trigger slightly before it hits the bottom
+      threshold: 0, // 0 ensures it triggers the absolute second ANY pixel of the element enters view
+      rootMargin: "0px 0px -20px 0px" // Triggers when the top of the element is 20px above the bottom of screen
     });
 
     if (ref.current) observer.observe(ref.current);

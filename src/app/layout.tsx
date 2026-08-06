@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Great_Vibes } from "next/font/google";
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
@@ -24,7 +25,9 @@ export default function RootLayout({
       <body className={`${outfit.className} ${greatVibes.variable}`}>
         <CustomCursor />
         <Preloader />
-        <Navbar />
+        <Suspense fallback={null}>
+          <Navbar />
+        </Suspense>
         <main>{children}</main>
         <Footer />
       </body>

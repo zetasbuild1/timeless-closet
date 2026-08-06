@@ -8,7 +8,7 @@ import styles from "./HeroSlider.module.css";
 const slides = [
   {
     id: 1,
-    tag: "Hot Looks 2024",
+    tag: "Hot Looks 2026",
     title: "Summer<br/>Mini Frocks.",
     subtitle: "Discover the perfect dress for a sun-kissed day.",
     image: "/images/products/mini-frock-floral.jpg",
@@ -43,28 +43,28 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <section 
-      className={styles.hero} 
+    <section
+      className={styles.hero}
       style={{ backgroundColor: slides[current].bgColor, transition: 'background-color 1s ease' }}
     >
       <div className={styles.fabricOverlay}></div>
       {slides.map((slide, index) => (
-        <div 
+        <div
           key={slide.id}
           className={`${styles.slide} ${index === current ? styles.active : ''}`}
         >
-          <img 
-            src={slide.image} 
-            alt="Fashion models" 
-            className={styles.heroImage} 
+          <img
+            src={slide.image}
+            alt="Fashion models"
+            className={styles.heroImage}
           />
           <div className={styles.imageOverlay} style={{ background: `linear-gradient(to right, ${slide.bgColor} 0%, transparent 100%)` }}></div>
-          
+
           <div className={`container ${styles.heroContainer}`}>
             <div className={styles.heroContent}>
               <span className={styles.heroTag}>{slide.tag}</span>
-              <h1 
-                className={styles.heroTitle} 
+              <h1
+                className={styles.heroTitle}
                 dangerouslySetInnerHTML={{ __html: slide.title }}
               />
               <p className={styles.heroSubtitle}>{slide.subtitle}</p>
@@ -84,7 +84,7 @@ export default function HeroSlider() {
       {/* Slider Indicators */}
       <div className={styles.indicators}>
         {slides.map((_, index) => (
-          <button 
+          <button
             key={index}
             className={`${styles.indicatorBtn} ${index === current ? styles.activeIndicator : ''}`}
             onClick={() => setCurrent(index)}

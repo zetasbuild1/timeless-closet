@@ -127,6 +127,18 @@
   font-size: 0.85rem;
 }
 
+.zetasLink {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.zetasLink:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
 .payments {
   display: flex;
   gap: 1rem;

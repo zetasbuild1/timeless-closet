@@ -71,7 +71,7 @@ export default function Footer() {
 
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
-          <p>&copy; {new Date().getFullYear()} Timeless. All rights reserved.</p>
+          <p>&copy; 2026 Designed and Developed by <a href="https://www.zetasbuild.com/" target="_blank" rel="noreferrer" className={styles.zetasLink}>ZetasBuild</a>. All Rights Reserved</p>
           <div className={styles.payments}>
             <span>VISA</span>
             <span>MasterCard</span>

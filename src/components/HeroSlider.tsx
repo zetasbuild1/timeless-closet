@@ -8,11 +8,11 @@ import styles from "./HeroSlider.module.css";
 const slides = [
   {
     id: 1,
-    tag: "New Collection 2024",
-    title: "Timeless Style.<br/>Modern You.",
-    subtitle: "Style that stays with you, every moment.",
-    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    bgColor: "#f6f4f1" // Warm beige matching the first image
+    tag: "Hot Looks 2024",
+    title: "Summer<br/>Mini Frocks.",
+    subtitle: "Discover the perfect dress for a sun-kissed day.",
+    image: "/images/products/mini-frock-floral.jpg",
+    bgColor: "#f3e8e6"
   },
   {
     id: 2,

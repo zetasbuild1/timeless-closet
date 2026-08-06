@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button";
 import FeaturesBar from "@/components/FeaturesBar";
 import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
+import ScrollReveal from "@/components/ScrollReveal";
 import { products } from "@/data/products";
 
 const categories = [
@@ -15,8 +16,8 @@ const categories = [
 ];
 
 export default function Home() {
-  const newArrivals = products.slice(0, 4);
-  const bestSellers = products.slice(8, 12);
+  const newArrivals = [...products].filter(p => p.isNew).reverse().slice(0, 4);
+  const bestSellers = [...products].filter(p => p.isBestSeller).reverse().slice(0, 4);
 
   return (
     <main className={styles.main}>
@@ -24,7 +25,7 @@ export default function Home() {
       <HeroSlider />
 
       {/* Shop by Category */}
-      <section className={`${styles.section} container`}>
+      <ScrollReveal as="section" className={`${styles.section} container`}>
         <div className={styles.sectionHeader}>
           <div>
             <h2 className={styles.sectionTitle}>Shop by Category</h2>
@@ -42,10 +43,10 @@ export default function Home() {
             </Link>
           ))}
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* New Arrivals */}
-      <section className={`${styles.section} container`}>
+      <ScrollReveal as="section" className={`${styles.section} container`}>
         <div className={styles.sectionHeader}>
           <div>
             <h2 className={styles.sectionTitle}>New Arrivals</h2>
@@ -58,10 +59,10 @@ export default function Home() {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* Sale Banner */}
-      <section className="container">
+      <ScrollReveal as="section" className="container">
         <div className={styles.saleBanner}>
           <div className={styles.saleContent}>
             <span className={styles.saleTag}>Summer Sale</span>
@@ -79,10 +80,10 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* Best Sellers */}
-      <section className={`${styles.section} container`}>
+      <ScrollReveal as="section" className={`${styles.section} container`}>
         <div className={styles.sectionHeader}>
           <div>
             <h2 className={styles.sectionTitle}>Best Sellers</h2>
@@ -95,10 +96,12 @@ export default function Home() {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* Features Bar */}
-      <FeaturesBar />
+      <ScrollReveal>
+        <FeaturesBar />
+      </ScrollReveal>
     </main>
   );
 }

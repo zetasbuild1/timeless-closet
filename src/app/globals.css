@@ -89,3 +89,10 @@ input:focus, select:focus, textarea:focus {
     padding: 0 1rem;
   }
 }
+
+/* Hide default cursor on desktop devices to show CustomCursor */
+@media (min-width: 768px) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}

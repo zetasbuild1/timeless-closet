@@ -33,10 +33,27 @@
   font-weight: 500;
   text-transform: capitalize;
   color: var(--color-text-main);
+  position: relative;
+  padding-bottom: 2px;
 }
 
-.navLinks a:hover {
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.navLinks a:hover, .navLinks a.active {
   color: var(--color-primary);
+}
+
+.navLinks a:hover::after, .navLinks a.active::after {
+  width: 100%;
 }
 
 .navIcons {
@@ -73,7 +90,7 @@
   justify-content: center;
 }
 
-.hamburger {
+.navIcons button.hamburger {
   display: none;
   background: none;
   border: none;
@@ -84,12 +101,12 @@
   transition: color 0.2s ease;
 }
 
-.hamburger:hover {
+.navIcons button.hamburger:hover {
   color: var(--color-primary);
 }
 
 @media (max-width: 1024px) {
-  .hamburger {
+  .navIcons button.hamburger {
     display: flex;
     align-items: center;
   }
@@ -118,4 +135,28 @@
     opacity: 1;
     visibility: visible;
   }
+}
+
+/* Cart Animations */
+.cartAnimating svg {
+  animation: shakeCart 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.badgeBounce {
+  animation: bounceBadge 0.5s cubic-bezier(0.28, 0.84, 0.42, 1) both;
+}
+
+@keyframes shakeCart {
+  10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-2deg); }
+  20%, 80% { transform: translate3d(2px, 0, 0) rotate(2deg); }
+  30%, 50%, 70% { transform: translate3d(-2px, 0, 0) rotate(-2deg); }
+  40%, 60% { transform: translate3d(2px, 0, 0) rotate(2deg); }
+}
+
+@keyframes bounceBadge {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.5); }
+  60% { transform: scale(0.9); }
+  80% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }

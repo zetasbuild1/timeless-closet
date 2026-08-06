@@ -1,0 +1,12 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  /* Use a smooth, sophisticated easing function for a premium feel */
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

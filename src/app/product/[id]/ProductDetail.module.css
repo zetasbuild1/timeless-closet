@@ -74,11 +74,52 @@
   position: relative;
 }
 
-.mainImage img {
+.mainImage.zooming {
+  cursor: none; /* Hide default cursor when lens is active */
+}
+
+.mainImg {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+}
+
+/* Crossfade transitions */
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Lens Effect */
+.lens {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  pointer-events: none; /* Let mouse events pass through to container */
+  background-repeat: no-repeat;
+  background-size: 250%; /* The zoom level */
+  z-index: 10;
+  animation: popLens 0.2s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+@keyframes popLens {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* Details */

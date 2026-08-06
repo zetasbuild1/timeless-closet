@@ -21,8 +21,21 @@ export default function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState<string>(productSizes[0]);
   const [selectedColor, setSelectedColor] = useState<string>(productColors[0]);
   const [quantity, setQuantity] = useState<number>(1);
-  const [activeImageIndex, setActiveImageIndex] = useState<number>(1);
-  const [zoomStyle, setZoomStyle] = useState<{ transformOrigin?: string, transform?: string }>({});
+  const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+  
+  // Gallery dummy images (since our products only have 1-2 images)
+  const galleryImages = [
+    product.image,
+    product.hoverImage || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1509631179647-0c115821922f?auto=format&fit=crop&w=800&q=80'
+  ];
+
+  const [currentImage, setCurrentImage] = useState<string>(galleryImages[0]);
+  const [nextImage, setNextImage] = useState<string | null>(null);
+
+  const [isZooming, setIsZooming] = useState<boolean>(false);
+  const [lensPos, setLensPos] = useState({ x: 0, y: 0, bgX: 0, bgY: 0 });
   
   const [isWishlisted, setIsWishlisted] = useState<boolean>(false);
   const [isAdded, setIsAdded] = useState<boolean>(false);
@@ -88,21 +101,36 @@ export default function ProductDetailPage() {
   const increaseQty = () => setQuantity(prev => prev + 1);
   const decreaseQty = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
+  const handleThumbnailClick = (img: string, i: number) => {
+    if (img === currentImage || nextImage) return;
+    setActiveImageIndex(i);
+    setNextImage(img);
+    setTimeout(() => {
+      setCurrentImage(img);
+      setNextImage(null);
+    }, 400); // 400ms crossfade duration
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsZooming(true);
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-    setZoomStyle({
-      transformOrigin: `${x}% ${y}%`,
-      transform: 'scale(2.5)' // Increase magnification slightly for better view
+    const x = e.clientX - left;
+    const y = e.clientY - top;
+    
+    // Clamp to boundaries so lens doesn't overflow completely
+    const clampedX = Math.max(0, Math.min(x, width));
+    const clampedY = Math.max(0, Math.min(y, height));
+
+    setLensPos({
+      x: clampedX,
+      y: clampedY,
+      bgX: (clampedX / width) * 100,
+      bgY: (clampedY / height) * 100
     });
   };
 
   const handleMouseLeave = () => {
-    setZoomStyle({
-      transformOrigin: 'center center',
-      transform: 'scale(1)'
-    });
+    setIsZooming(false);
   };
 
   return (
@@ -120,29 +148,47 @@ export default function ProductDetailPage() {
         {/* Gallery */}
         <div className={styles.gallery}>
           <div className={styles.thumbnails}>
-            {[1, 2, 3, 4].map((i) => (
+            {galleryImages.map((img, i) => (
               <div 
                 key={i} 
                 className={`${styles.thumbnail} ${i === activeImageIndex ? styles.activeThumb : ''}`}
-                onClick={() => setActiveImageIndex(i)}
+                onClick={() => handleThumbnailClick(img, i)}
               >
-                <img src={product.image} alt={`Thumbnail ${i}`} loading="lazy" />
+                <img src={img} alt={`Thumbnail ${i}`} loading="lazy" />
               </div>
             ))}
           </div>
           <div 
-            className={styles.mainImage}
+            className={`${styles.mainImage} ${isZooming ? styles.zooming : ''}`}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
+            {/* Crossfade Images */}
             <img 
-              src={product.image} 
+              src={currentImage} 
               alt={product.name} 
-              style={{
-                ...zoomStyle,
-                transition: zoomStyle.transform === 'scale(1)' ? 'transform 0.3s ease' : 'none'
-              }}
+              className={`${styles.mainImg} ${nextImage ? styles.fadeOut : ''}`}
             />
+            {nextImage && (
+              <img 
+                src={nextImage} 
+                alt={product.name} 
+                className={`${styles.mainImg} ${styles.fadeIn}`}
+              />
+            )}
+            
+            {/* Lens Effect */}
+            {isZooming && (
+              <div 
+                className={styles.lens}
+                style={{
+                  left: lensPos.x - 75,
+                  top: lensPos.y - 75,
+                  backgroundImage: `url(${nextImage || currentImage})`,
+                  backgroundPosition: `${lensPos.bgX}% ${lensPos.bgY}%`
+                }}
+              />
+            )}
           </div>
         </div>
 

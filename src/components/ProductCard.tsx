@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Product } from '@/data/products';
+import QuickAddButton from './QuickAddButton';
 import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
@@ -18,11 +19,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link href={`/product/${product.id}`} className={styles.card}>
       <div className={styles.imageContainer}>
-        <img src={product.image} alt={product.name} className={styles.image} loading="lazy" />
+        <img src={product.image} alt={product.name} className={styles.primaryImage} loading="lazy" />
+        <img src={product.hoverImage || product.image} alt={product.name} className={styles.secondaryImage} loading="lazy" />
+        
         {product.isNew && <span className={`${styles.badge} ${styles.badgeNew}`}>New</span>}
         {product.isOnSale && <span className={`${styles.badge} ${styles.badgeSale}`}>-30%</span>}
         
         <div className={styles.actions}>
+          <QuickAddButton className={styles.quickAddBtn} />
           <button className={styles.actionBtn} aria-label="Add to Wishlist">
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
           </button>

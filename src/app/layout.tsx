@@ -3,6 +3,7 @@ import { Outfit, Great_Vibes } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} ${greatVibes.variable}`}>
+        <CustomCursor />
         <Preloader />
         <Navbar />
         <main>{children}</main>

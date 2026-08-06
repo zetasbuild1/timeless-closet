@@ -12,7 +12,8 @@ export interface Product {
   sizes?: string[];
   colors?: string[];
   gender?: 'Women' | 'Men' | 'Unisex';
-  isNew?: boolean;
+  isBestSeller?: boolean;
+  hoverImage?: string;
 }
 
 export const products: Product[] = [
@@ -976,6 +977,151 @@ export const products: Product[] = [
       "#b71c1c"
     ],
     gender: "Men",
+    isNew: false
+  },
+  {
+    id: "49",
+    name: "Summer Mini Frock - Blue",
+    price: 3450,
+    image: "/images/products/mini-frock-blue.png",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.8,
+    reviews: 24,
+    sizes: ["XS", "S", "M"],
+    colors: ["#546e7a", "#ffffff"],
+    gender: "Women",
+    isNew: true
+  },
+  {
+    id: "50",
+    name: "Smocked Mini Dress - Green",
+    price: 3950,
+    image: "/images/products/mini-frock-green.jpg",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.9,
+    reviews: 31,
+    sizes: ["S", "M", "L"],
+    colors: ["#388e3c", "#e0d8d0"],
+    gender: "Women",
+    isNew: true
+  },
+  {
+    id: "51",
+    name: "Wrap Mini Dress - White",
+    price: 4250,
+    image: "/images/products/mini-frock-white.jpg",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.7,
+    reviews: 18,
+    sizes: ["XS", "S", "M", "L"],
+    colors: ["#ffffff"],
+    gender: "Women",
+    isNew: true
+  },
+  {
+    id: "52",
+    name: "One Shoulder Resort Dress",
+    price: 4500,
+    image: "/images/products/one-shoulder-dress.jpg",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 5.0,
+    reviews: 12,
+    sizes: ["S", "M"],
+    colors: ["#546e7a", "#ffffff"],
+    gender: "Women",
+    isNew: true
+  },
+  {
+    id: "53",
+    name: "Floral Print Mini Dress",
+    price: 3800,
+    image: "/images/products/mini-frock-floral.jpg",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.8,
+    reviews: 45,
+    sizes: ["XS", "S", "M", "L"],
+    colors: ["#b71c1c", "#000000"],
+    gender: "Women",
+    isNew: true
+  },
+  {
+    id: "54",
+    name: "Classic Black Flare Dress",
+    price: 3600,
+    image: "/images/products/new-dress-black.png",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.9,
+    reviews: 67,
+    sizes: ["XS", "S", "M", "L"],
+    colors: ["#000000"],
+    gender: "Women",
+    isBestSeller: true,
+    isNew: false
+  },
+  {
+    id: "55",
+    name: "Monochrome Floral Tunic",
+    price: 4100,
+    image: "/images/products/new-dress-bw-floral.png",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.8,
+    reviews: 82,
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["#000000", "#ffffff"],
+    gender: "Women",
+    isBestSeller: true,
+    isNew: false
+  },
+  {
+    id: "56",
+    name: "Spring Bloom Flowy Dress",
+    price: 4800,
+    image: "/images/products/new-dress-pink-floral.jpg",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.9,
+    reviews: 55,
+    sizes: ["XS", "S", "M"],
+    colors: ["#e0d8d0"],
+    gender: "Women",
+    isBestSeller: true,
+    isNew: false
+  },
+  {
+    id: "57",
+    name: "Olive Green Shift Dress",
+    price: 3950,
+    image: "/images/products/new-dress-olive.png",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 4.7,
+    reviews: 40,
+    sizes: ["S", "M", "L"],
+    colors: ["#546e7a"],
+    gender: "Women",
+    isBestSeller: true,
+    isNew: false
+  },
+  {
+    id: "58",
+    name: "Azure Twist Front Dress",
+    price: 4400,
+    image: "/images/products/new-dress-blue.jpg",
+    category: "Dresses",
+    isOnSale: false,
+    rating: 5.0,
+    reviews: 95,
+    sizes: ["XS", "S", "M"],
+    colors: ["#546e7a"],
+    gender: "Women",
+    isBestSeller: true,
     isNew: false
   }
 ];

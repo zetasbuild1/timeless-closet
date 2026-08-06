@@ -7,6 +7,31 @@
   overflow: hidden;
 }
 
+/* Subtle, almost invisible fabric gradient movement */
+.fabricOverlay {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 1;
+  pointer-events: none;
+  background: 
+    radial-gradient(ellipse at center, rgba(255,255,255,0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(0,0,0,0.03) 0%, transparent 40%),
+    radial-gradient(ellipse at top left, rgba(255,255,255,0.3) 0%, transparent 40%);
+  background-size: 100% 100%;
+  animation: floatFabric 20s ease-in-out infinite alternate;
+  mix-blend-mode: overlay;
+  opacity: 0.8;
+}
+
+@keyframes floatFabric {
+  0% { transform: translate(0%, 0%) rotate(0deg) scale(1); }
+  50% { transform: translate(-10%, 5%) rotate(2deg) scale(1.05); }
+  100% { transform: translate(5%, -10%) rotate(-1deg) scale(0.95); }
+}
+
 .slide {
   position: absolute;
   top: 0;

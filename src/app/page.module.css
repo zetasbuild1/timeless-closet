@@ -148,13 +148,27 @@
 
 /* Sale Banner */
 .saleBanner {
-  background-color: var(--color-primary);
+  background: linear-gradient(-45deg, var(--color-primary), var(--color-primary-dark), #600f0f, var(--color-primary-dark));
+  background-size: 400% 400%;
+  animation: luxuryGradient 20s ease infinite;
   color: white;
   margin: 4rem 0;
   display: flex;
   align-items: stretch;
   border-radius: 4px;
   overflow: hidden;
+}
+
+@keyframes luxuryGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .saleContent {

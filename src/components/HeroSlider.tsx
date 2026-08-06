@@ -47,6 +47,7 @@ export default function HeroSlider() {
       className={styles.hero} 
       style={{ backgroundColor: slides[current].bgColor, transition: 'background-color 1s ease' }}
     >
+      <div className={styles.fabricOverlay}></div>
       {slides.map((slide, index) => (
         <div 
           key={slide.id}

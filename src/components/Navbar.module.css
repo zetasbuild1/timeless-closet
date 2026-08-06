@@ -1,0 +1,121 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+  padding: 1.5rem 0;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-logo), 'Great Vibes', cursive;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #e52929; /* vibrant red to match image */
+  letter-spacing: 0px;
+  line-height: 1;
+  padding-bottom: 0.2rem;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.navLinks a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--color-text-main);
+}
+
+.navLinks a:hover {
+  color: var(--color-primary);
+}
+
+.navIcons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navIcons button, .cartIcon {
+  color: var(--color-text-main);
+  transition: color 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navIcons button:hover, .cartIcon:hover {
+  color: var(--color-primary);
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.hamburger:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 1024px) {
+  .hamburger {
+    display: flex;
+    align-items: center;
+  }
+
+  .navLinks {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background);
+    padding: 2rem;
+    gap: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-top: 1px solid var(--color-border);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .navLinksOpen {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}

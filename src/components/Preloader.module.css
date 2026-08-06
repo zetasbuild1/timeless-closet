@@ -1,0 +1,59 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.background {
+  position: absolute;
+  inset: -10%; /* slightly larger to hide blur edges */
+  /* Elegant fashion image for background */
+  background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: blur(25px) brightness(1.1);
+  z-index: -1;
+  transform: scale(1.1); /* ensures blurred edges don't show white gaps */
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(253, 250, 246, 0.65); /* soft, elegant cream overlay to make logo pop */
+  z-index: -1;
+}
+
+.logoContainer {
+  animation: elegantPulse 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo {
+  font-family: var(--font-logo), 'Great Vibes', cursive;
+  font-size: 6rem;
+  font-weight: 400;
+  color: #e52929; /* Vibrant red matching navbar */
+  letter-spacing: 0px;
+  line-height: 1;
+  text-shadow: 0 10px 30px rgba(229, 41, 41, 0.2);
+}
+
+@keyframes elegantPulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.97) translateY(0); }
+  50% { opacity: 1; transform: scale(1.03) translateY(-4px); }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 4rem;
+  }
+}

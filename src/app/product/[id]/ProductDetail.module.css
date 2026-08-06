@@ -371,11 +371,17 @@
   .thumbnails {
     flex-direction: row;
     width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
   .thumbnail {
     width: 80px;
+    flex-shrink: 0;
   }
   .mainImage {
-    height: 500px;
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
 }

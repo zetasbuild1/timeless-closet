@@ -28,7 +28,7 @@ export default function ProductDetailPage() {
     product.image,
     product.hoverImage || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
     'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1509631179647-0c115821922f?auto=format&fit=crop&w=800&q=80'
+    'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80'
   ];
 
   const [currentImage, setCurrentImage] = useState<string>(galleryImages[0]);

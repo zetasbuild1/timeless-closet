@@ -47,15 +47,15 @@ function ShopContent() {
 
   const categories = [
     { name: 'All', count: products.length },
+    { name: 'Tops', count: products.filter(p => p.category === 'Tops').length },
     { name: 'T-Shirts', count: products.filter(p => p.category === 'T-Shirts').length },
     { name: 'Shirts', count: products.filter(p => p.category === 'Shirts').length },
     { name: 'Dresses', count: products.filter(p => p.category === 'Dresses').length },
     { name: 'Jeans', count: products.filter(p => p.category === 'Jeans').length },
     { name: 'Jackets', count: products.filter(p => p.category === 'Jackets').length },
-    { name: 'Accessories', count: products.filter(p => p.category === 'Accessories').length },
   ];
 
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  const sizes = ['S', 'M', 'L', 'XL', 'XXL', '2', '4', '6', 'UK8', 'UK10', 'UK12'];
   const colors = ['#000000', '#ffffff', '#e0d8d0', '#546e7a', '#b71c1c', '#388e3c'];
 
   const toggleCategory = (catName: string) => {
@@ -169,20 +169,7 @@ function ShopContent() {
             </div>
           </div>
 
-          <div className={styles.filterSection}>
-            <h3 className={styles.filterTitle}>Colors</h3>
-            <div className={styles.colorList}>
-              {colors.map(color => (
-                <button 
-                  key={color} 
-                  className={`${styles.colorBtn} ${selectedColors.includes(color) ? styles.colorBtnActive : ''}`}
-                  style={{ backgroundColor: color }}
-                  onClick={() => toggleColor(color)}
-                  aria-label={`Color ${color}`}
-                ></button>
-              ))}
-            </div>
-          </div>
+
         </aside>
 
         {/* Main Content */}

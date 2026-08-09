@@ -155,5 +155,159 @@ export const products: Product[] = [
       "WhatsApp to order: 0768 678 104",
       "Cash on Delivery | Bank Deposits"
     ]
+  },
+  {
+    id: "7",
+    name: "Mens Navy Printed Short Sleeve Shirt",
+    price: 3750,
+    image: "/images/products/mens-navy-printed-short-sleeve-shirt1.webp",
+    hoverImage: "/images/products/mens-navy-printed-short-sleeve-shirt2.webp",
+    images: [
+      "/images/products/mens-navy-printed-short-sleeve-shirt1.webp",
+      "/images/products/mens-navy-printed-short-sleeve-shirt2.webp",
+      "/images/products/mens-navy-printed-short-sleeve-shirt3.webp"
+    ],
+    category: "Shirts",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["#000080"], 
+    gender: "Men",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
+  },
+  {
+    id: "8",
+    name: "Pink Stripe Ladies Oversized Shirt",
+    price: 3500,
+    image: "/images/products/pink-stripe-ladies-oversized-shirt1.webp",
+    hoverImage: "/images/products/pink-stripe-ladies-oversized-shirt2.webp",
+    images: [
+      "/images/products/pink-stripe-ladies-oversized-shirt1.webp",
+      "/images/products/pink-stripe-ladies-oversized-shirt2.webp",
+      "/images/products/pink-stripe-ladies-oversized-shirt3.webp"
+    ],
+    category: "Shirts",
+    sizes: ["S", "M", "L"],
+    colors: ["#ffc0cb"], 
+    gender: "Women",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
+  },
+  {
+    id: "9",
+    name: "Green Leaf Printed Cuban Collar Shirt",
+    price: 3750,
+    image: "/images/products/green-leaf-printed-cuban-collar-shirt1.webp",
+    hoverImage: "/images/products/green-leaf-printed-cuban-collar-shirt2.webp",
+    images: [
+      "/images/products/green-leaf-printed-cuban-collar-shirt1.webp",
+      "/images/products/green-leaf-printed-cuban-collar-shirt2.webp",
+      "/images/products/green-leaf-printed-cuban-collar-shirt3.webp"
+    ],
+    category: "Shirts",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["#388e3c"], 
+    gender: "Men",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
+  },
+  {
+    id: "10",
+    name: "Khaki Short Sleeve Shirt",
+    price: 3750,
+    image: "/images/products/khaki-short-sleeve-shirt1.webp",
+    hoverImage: "/images/products/khaki-short-sleeve-shirt2.webp",
+    images: [
+      "/images/products/khaki-short-sleeve-shirt1.webp",
+      "/images/products/khaki-short-sleeve-shirt2.webp",
+      "/images/products/khaki-short-sleeve-shirt3.webp"
+    ],
+    category: "Shirts",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["#c3b091"], 
+    gender: "Men",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
+  },
+  {
+    id: "11",
+    name: "Peacock stripe Long Dress",
+    price: 4500,
+    image: "/images/products/peacock-stripe-long-dress1.webp",
+    hoverImage: "/images/products/peacock-stripe-long-dress2.webp",
+    images: [
+      "/images/products/peacock-stripe-long-dress1.webp",
+      "/images/products/peacock-stripe-long-dress2.webp",
+      "/images/products/peacock-stripe-long-dress3.webp"
+    ],
+    category: "Dresses",
+    sizes: ["UK8", "UK10", "UK12"],
+    colors: ["#3f6b7c"], 
+    gender: "Women",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
+  },
+  {
+    id: "12",
+    name: "Navy and Green Stripe T-shirt",
+    price: 3250,
+    image: "/images/products/navy-and-green-stripe-t-shirt1.webp",
+    hoverImage: "/images/products/navy-and-green-stripe-t-shirt2.webp",
+    images: [
+      "/images/products/navy-and-green-stripe-t-shirt1.webp",
+      "/images/products/navy-and-green-stripe-t-shirt2.webp",
+      "/images/products/navy-and-green-stripe-t-shirt3.webp"
+    ],
+    category: "T-Shirts",
+    sizes: ["UK8", "UK10", "UK12"],
+    colors: ["#000080", "#008000"], 
+    gender: "Men",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
+  },
+  {
+    id: "13",
+    name: "The Outline Pant",
+    price: 4200,
+    image: "/images/products/the-outline-pant1.webp",
+    hoverImage: "/images/products/the-outline-pant2.webp",
+    images: [
+      "/images/products/the-outline-pant1.webp",
+      "/images/products/the-outline-pant2.webp",
+      "/images/products/the-outline-pant3.webp"
+    ],
+    category: "Jeans",
+    sizes: ["2", "4", "6"],
+    colors: ["#1a1a1a"], 
+    gender: "Men",
+    isNew: true,
+    description: "Timeless. Effortless. Always in style.",
+    details: [
+      "WhatsApp to order: 0768 678 104",
+      "Cash on Delivery | Bank Deposits"
+    ]
   }
 ];

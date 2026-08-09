@@ -67,7 +67,6 @@ export default function Navbar() {
           <li><Link href="/shop?gender=women" className={isActive('/shop?gender=women') ? styles.active : ''} onClick={() => setIsMenuOpen(false)}>Women</Link></li>
           <li><Link href="/shop?gender=men" className={isActive('/shop?gender=men') ? styles.active : ''} onClick={() => setIsMenuOpen(false)}>Men</Link></li>
           <li><Link href="/shop?new=true" className={isActive('/shop?new=true') ? styles.active : ''} onClick={() => setIsMenuOpen(false)}>New Arrivals</Link></li>
-          <li><Link href="/shop?sale=true" className={isActive('/shop?sale=true') ? styles.active : ''} onClick={() => setIsMenuOpen(false)}>Sale</Link></li>
           <li><Link href="/about" className={isActive('/about') ? styles.active : ''} onClick={() => setIsMenuOpen(false)}>About</Link></li>
           <li><Link href="/contact" className={isActive('/contact') ? styles.active : ''} onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
         </ul>

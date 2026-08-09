@@ -144,7 +144,7 @@
 .price {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: #b71c1c;
 }
 
 .originalPrice {

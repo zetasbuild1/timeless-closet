@@ -8,11 +8,10 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { products } from "@/data/products";
 
 const categories = [
-  { name: 'Women', count: '120+', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop', link: '/shop?category=women' },
-  { name: 'Men', count: '150+', image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=800&auto=format&fit=crop', link: '/shop?category=men' },
-  { name: 'Dresses', count: '80+', image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800&auto=format&fit=crop', link: '/shop?category=dresses' },
-  { name: 'T-Shirts', count: '100+', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop', link: '/shop?category=t-shirts' },
-  { name: 'Accessories', count: '60+', image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop', link: '/shop?category=accessories' },
+  { name: 'Women', image: '/images/products/floral-print-mini-dress1.webp', link: '/shop?category=women' },
+  { name: 'Men', image: '/images/products/mens-olive-stripe-short-sleeve-shirt1.webp', link: '/shop?category=men' },
+  { name: 'Dresses', image: '/images/products/floral-peplum-top1.webp', link: '/shop?category=dresses' },
+  { name: 'Shirts', image: '/images/products/blue-printed-shirt1.webp', link: '/shop?category=shirts' },
 ];
 
 export default function Home() {
@@ -24,22 +23,17 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSlider />
 
-      {/* Shop by Category */}
-      <ScrollReveal as="section" className={`${styles.section} container`}>
-        <div className={styles.sectionHeader}>
-          <div>
-            <h2 className={styles.sectionTitle}>Shop by Category</h2>
-          </div>
-          <Link href="/shop" className={styles.viewAll}>VIEW ALL</Link>
-        </div>
+      {/* Shop by Category - Accordion */}
+      <ScrollReveal as="section" className={styles.categorySection}>
         <div className={styles.categoryGrid}>
           {categories.map((cat, idx) => (
             <Link key={idx} href={cat.link} className={styles.categoryCard}>
               <div className={styles.categoryImageWrapper}>
                 <img src={cat.image} alt={cat.name} loading="lazy" />
               </div>
-              <div className={styles.categoryName}>{cat.name}</div>
-              <div className={styles.categoryCount}>{cat.count} items</div>
+              <div className={styles.categoryContent}>
+                <h3 className={styles.categoryName}>{cat.name}</h3>
+              </div>
             </Link>
           ))}
         </div>
@@ -61,26 +55,7 @@ export default function Home() {
         </div>
       </ScrollReveal>
 
-      {/* Sale Banner */}
-      <ScrollReveal as="section" className="container">
-        <div className={styles.saleBanner}>
-          <div className={styles.saleContent}>
-            <span className={styles.saleTag}>Summer Sale</span>
-            <h2 className={styles.saleTitle}>Up to 30% Off</h2>
-            <p className={styles.saleSubtitle}>On selected items</p>
-            <Link href="/shop?sale=true">
-              <Button variant="secondary" size="lg">SHOP NOW</Button>
-            </Link>
-          </div>
-          <div className={styles.saleImageWrapper}>
-            <img 
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-              alt="Sale" 
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </ScrollReveal>
+
 
       {/* Best Sellers */}
       <ScrollReveal as="section" className={`${styles.section} container`}>

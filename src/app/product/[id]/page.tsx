@@ -10,7 +10,7 @@ import { useParams } from "next/navigation";
 export default function ProductDetailPage() {
   const params = useParams();
   const id = params?.id as string;
-  const product = products.find(p => p.id === id) || products[1];
+  const product = products.find(p => p.id === id) || products[0];
 
   const defaultSizes = ['XS', 'S', 'M', 'L', 'XL'];
   const defaultColors = ['#000000', '#e0d8d0', '#546e7a'];
@@ -23,13 +23,15 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState<number>(1);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   
-  // Gallery dummy images (since our products only have 1-2 images)
-  const galleryImages = [
-    product.image,
-    product.hoverImage || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80'
-  ];
+  // Use product images if available, otherwise fallback
+  const galleryImages = product.images && product.images.length > 0 
+    ? product.images 
+    : [
+        product.image,
+        product.hoverImage || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80'
+      ];
 
   const [currentImage, setCurrentImage] = useState<string>(galleryImages[0]);
   const [nextImage, setNextImage] = useState<string | null>(null);
@@ -214,7 +216,7 @@ export default function ProductDetailPage() {
           </div>
 
           <p className={styles.description}>
-            Beautiful {product.name.toLowerCase()} perfect for summer days. Made with lightweight fabric for ultimate comfort.
+            {product.description || `Beautiful ${product.name.toLowerCase()} perfect for summer days. Made with lightweight fabric for ultimate comfort.`}
           </p>
 
           <div className={styles.selector}>
@@ -297,10 +299,16 @@ export default function ProductDetailPage() {
               <summary className={styles.accordionHeader}>Product Details</summary>
               <div className={styles.accordionContent}>
                 <ul className={styles.detailList}>
-                  <li>100% Premium Cotton</li>
-                  <li>Lightweight & Breathable</li>
-                  <li>Floral Print Design</li>
-                  <li>Machine Wash Cold</li>
+                  {product.details ? (
+                    product.details.map((detail, index) => <li key={index}>{detail}</li>)
+                  ) : (
+                    <>
+                      <li>100% Premium Cotton</li>
+                      <li>Lightweight & Breathable</li>
+                      <li>Floral Print Design</li>
+                      <li>Machine Wash Cold</li>
+                    </>
+                  )}
                 </ul>
               </div>
             </details>

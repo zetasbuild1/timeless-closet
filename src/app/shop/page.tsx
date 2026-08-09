@@ -12,9 +12,13 @@ function ShopContent() {
   const genderParam = searchParams?.get('gender');
   const newParam = searchParams?.get('new');
   const saleParam = searchParams?.get('sale');
+  const categoryParam = searchParams?.get('category');
+
+  const validCategories = ['Tops', 'T-Shirts', 'Shirts', 'Dresses', 'Pants', 'Jackets'];
+  const matchedCategory = validCategories.find(c => c.toLowerCase() === categoryParam?.toLowerCase()) || 'All';
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([matchedCategory]);
   const [maxPrice, setMaxPrice] = useState<number>(10000);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
@@ -56,7 +60,7 @@ function ShopContent() {
   ];
 
   const sizes = ['S', 'M', 'L', 'XL', 'XXL', '2', '4', '6', 'UK8', 'UK10', 'UK12'];
-  const colors = ['#000000', '#ffffff', '#e0d8d0', '#546e7a', '#b71c1c', '#388e3c'];
+  const colors = ['#000000', '#ffffff', '#e0d8d0', '#546e7a', '#b71c1c', '#388e3c', '#800080', '#000080', '#008000'];
 
   const toggleCategory = (catName: string) => {
     if (catName === 'All') {
@@ -178,6 +182,7 @@ function ShopContent() {
             <div className={styles.mobileFilterRow}>
               <h1 className={styles.pageTitle}>
                 {genderParam ? `${genderParam.charAt(0).toUpperCase() + genderParam.slice(1)}'s Collection` : 
+                 categoryParam ? `${matchedCategory} Collection` :
                  newParam ? 'New Arrivals' : 
                  saleParam ? 'Sale' : 
                  'Shop All'}

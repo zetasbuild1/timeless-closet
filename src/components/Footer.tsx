@@ -29,9 +29,9 @@ export default function Footer() {
         <div className={styles.linksCol}>
           <h3>Shop</h3>
           <ul>
-            <li><Link href="/shop?category=women">Women</Link></li>
-            <li><Link href="/shop?category=men">Men</Link></li>
-            <li><Link href="/shop?category=new-arrivals">New Arrivals</Link></li>
+            <li><Link href="/shop?gender=women">Women</Link></li>
+            <li><Link href="/shop?gender=men">Men</Link></li>
+            <li><Link href="/shop?new=true">New Arrivals</Link></li>
             <li><Link href="/shop?category=accessories">Accessories</Link></li>
           </ul>
         </div>

@@ -58,7 +58,7 @@ export const products: Product[] = [
     ],
     category: "Tops",
     sizes: ["S", "M", "L"],
-    colors: ["#ffffff", "#ffc0cb"], // assuming light/floral colors
+    colors: ["#b71c1c"], // red
     gender: "Women",
     isNew: true,
     isBestSeller: true,
@@ -108,7 +108,7 @@ export const products: Product[] = [
     ],
     category: "Tops",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["#800080"], // purple
+    colors: ["#800080"], // little purple
     gender: "Women",
     isNew: true,
     isBestSeller: true,
@@ -135,7 +135,7 @@ export const products: Product[] = [
     ],
     category: "Dresses",
     sizes: ["XS", "M", "L"],
-    colors: ["#ffffff", "#ffc0cb"], // assuming floral colors
+    colors: ["#ffffff"], // white
     gender: "Women",
     isNew: true,
     rating: 4.6,
@@ -159,7 +159,7 @@ export const products: Product[] = [
     ],
     category: "Shirts",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["#556b2f"], // olive green
+    colors: ["#ffffff"], // white
     gender: "Men",
     isNew: true,
     isBestSeller: true,
@@ -281,7 +281,7 @@ export const products: Product[] = [
     ],
     category: "Dresses",
     sizes: ["UK8", "UK10", "UK12"],
-    colors: ["#3f6b7c"], 
+    colors: ["#000000", "#ffffff"], // mix black & white
     gender: "Women",
     isNew: true,
     rating: 5.0,
@@ -305,7 +305,7 @@ export const products: Product[] = [
     ],
     category: "T-Shirts",
     sizes: ["UK8", "UK10", "UK12"],
-    colors: ["#000080", "#008000"], 
+    colors: ["#000080", "#008000"], // mix blue and green
     gender: "Men",
     isNew: true,
     rating: 4.6,
@@ -329,7 +329,7 @@ export const products: Product[] = [
     ],
     category: "Pants",
     sizes: ["2", "4", "6"],
-    colors: ["#1a1a1a"], 
+    colors: ["#ffffff"], // white
     gender: "Men",
     isNew: true,
     rating: 4.8,

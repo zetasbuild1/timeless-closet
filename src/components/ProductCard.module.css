@@ -190,6 +190,17 @@
   margin-left: 0.25rem;
 }
 
+@media (max-width: 768px) {
+  .actions {
+    bottom: 10px;
+  }
+  
+  .quickAddBtn, .actionBtn {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 480px) {
   .info {
     align-items: center;

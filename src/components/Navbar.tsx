@@ -58,7 +58,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={`container ${styles.navContainer}`}>
         <Link href="/" className={styles.logoLink}>
-          <img src="/images/logo.jpg" alt="Timeless Logo" className={styles.logoImage} />
+          <img src="/images/logo.PNG" alt="Timeless Logo" className={styles.logoImage} />
         </Link>
         
         <ul className={`${styles.navLinks} ${isMenuOpen ? styles.navLinksOpen : ''}`}>

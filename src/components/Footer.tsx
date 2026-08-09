@@ -7,7 +7,7 @@ export default function Footer() {
       <div className={`container ${styles.grid}`}>
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logoLink}>
-            <img src="/images/logo.jpg" alt="Timeless Logo" className={styles.logoImage} />
+            <img src="/images/logo.PNG" alt="Timeless Logo" className={styles.logoImage} />
           </Link>
           <p className={styles.tagline}>
             Timeless style for every moment. Premium quality clothing for modern lifestyles.

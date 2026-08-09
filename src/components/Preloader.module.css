@@ -37,14 +37,12 @@
   animation: elegantPulse 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo {
-  font-family: var(--font-logo), 'Great Vibes', cursive;
-  font-size: 6rem;
-  font-weight: 400;
-  color: #e52929; /* Vibrant red matching navbar */
-  letter-spacing: 0px;
-  line-height: 1;
-  text-shadow: 0 10px 30px rgba(229, 41, 41, 0.2);
+.logoImage {
+  height: 120px;
+  width: auto;
+  display: block;
+  /* Optional: subtle shadow to make it pop like the text did */
+  filter: drop-shadow(0 10px 20px rgba(229, 41, 41, 0.15));
 }
 
 @keyframes elegantPulse {
@@ -53,7 +51,7 @@
 }
 
 @media (max-width: 768px) {
-  .logo {
-    font-size: 4rem;
+  .logoImage {
+    height: 80px;
   }
 }

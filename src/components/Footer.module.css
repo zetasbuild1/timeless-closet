@@ -16,8 +16,7 @@
   width: auto;
   display: block;
   margin-bottom: 1.5rem;
-  mix-blend-mode: screen;
-  filter: grayscale(1) invert(1) contrast(10) brightness(2);
+  filter: brightness(0) invert(1);
 }
 
 .tagline {

@@ -20,7 +20,7 @@ export default function Preloader() {
       <div className={styles.background}></div>
       <div className={styles.overlay}></div>
       <div className={styles.logoContainer}>
-        <span className={styles.logo}>Timeless.</span>
+        <img src="/images/logo.PNG" alt="Timeless Logo" className={styles.logoImage} />
       </div>
     </div>
   );

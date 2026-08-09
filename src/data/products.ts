@@ -36,6 +36,8 @@ export const products: Product[] = [
     colors: ["#89ac8c"], // Sage green
     gender: "Men",
     isNew: true,
+    rating: 4.8,
+    reviews: 16,
     description: "Timeless. Easy. Made to wear for years. Perfect for everyday wear.",
     details: [
       "Premium handpicked quality",
@@ -59,6 +61,9 @@ export const products: Product[] = [
     colors: ["#ffffff", "#ffc0cb"], // assuming light/floral colors
     gender: "Women",
     isNew: true,
+    isBestSeller: true,
+    rating: 5.0,
+    reviews: 101,
     description: "Timeless. Effortless. Always in style. Perfect for everyday looks",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -81,6 +86,8 @@ export const products: Product[] = [
     colors: ["#1e3a8a"], // assuming dark blue
     gender: "Men",
     isNew: true,
+    rating: 4.8,
+    reviews: 91,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -104,6 +111,9 @@ export const products: Product[] = [
     colors: ["#800080"], // purple
     gender: "Women",
     isNew: true,
+    isBestSeller: true,
+    rating: 4.6,
+    reviews: 21,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -128,6 +138,8 @@ export const products: Product[] = [
     colors: ["#ffffff", "#ffc0cb"], // assuming floral colors
     gender: "Women",
     isNew: true,
+    rating: 4.6,
+    reviews: 58,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -150,6 +162,9 @@ export const products: Product[] = [
     colors: ["#556b2f"], // olive green
     gender: "Men",
     isNew: true,
+    isBestSeller: true,
+    rating: 4.7,
+    reviews: 46,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -172,6 +187,8 @@ export const products: Product[] = [
     colors: ["#000080"], 
     gender: "Men",
     isNew: true,
+    rating: 4.2,
+    reviews: 67,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -194,6 +211,9 @@ export const products: Product[] = [
     colors: ["#ffc0cb"], 
     gender: "Women",
     isNew: true,
+    isBestSeller: true,
+    rating: 4.3,
+    reviews: 43,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -216,6 +236,8 @@ export const products: Product[] = [
     colors: ["#388e3c"], 
     gender: "Men",
     isNew: true,
+    rating: 4.7,
+    reviews: 72,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -238,6 +260,8 @@ export const products: Product[] = [
     colors: ["#c3b091"], 
     gender: "Men",
     isNew: true,
+    rating: 4.8,
+    reviews: 41,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -260,6 +284,8 @@ export const products: Product[] = [
     colors: ["#3f6b7c"], 
     gender: "Women",
     isNew: true,
+    rating: 5.0,
+    reviews: 109,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -282,6 +308,8 @@ export const products: Product[] = [
     colors: ["#000080", "#008000"], 
     gender: "Men",
     isNew: true,
+    rating: 4.6,
+    reviews: 46,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",
@@ -299,11 +327,13 @@ export const products: Product[] = [
       "/images/products/the-outline-pant2.webp",
       "/images/products/the-outline-pant3.webp"
     ],
-    category: "Jeans",
+    category: "Pants",
     sizes: ["2", "4", "6"],
     colors: ["#1a1a1a"], 
     gender: "Men",
     isNew: true,
+    rating: 4.8,
+    reviews: 42,
     description: "Timeless. Effortless. Always in style.",
     details: [
       "WhatsApp to order: 0768 678 104",

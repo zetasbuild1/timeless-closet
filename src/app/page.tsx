@@ -7,11 +7,17 @@ import HeroSlider from "@/components/HeroSlider";
 import ScrollReveal from "@/components/ScrollReveal";
 import { products } from "@/data/products";
 
-const categories = [
-  { name: 'Women', image: '/images/products/floral-print-mini-dress1.webp', link: '/shop?category=women' },
-  { name: 'Men', image: '/images/products/mens-olive-stripe-short-sleeve-shirt1.webp', link: '/shop?category=men' },
-  { name: 'Dresses', image: '/images/products/floral-peplum-top1.webp', link: '/shop?category=dresses' },
+const row1Categories = [
+  { name: 'Women', image: '/images/products/floral-print-mini-dress1.webp', link: '/shop?gender=women' },
+  { name: 'Men', image: '/images/products/mens-olive-stripe-short-sleeve-shirt1.webp', link: '/shop?gender=men' },
+];
+
+const row2Categories = [
+  { name: 'Dresses', image: '/images/products/peacock-stripe-long-dress1.webp', link: '/shop?category=dresses' },
   { name: 'Shirts', image: '/images/products/blue-printed-shirt1.webp', link: '/shop?category=shirts' },
+  { name: 'Pants', image: '/images/products/the-outline-pant1.webp', link: '/shop?category=pants' },
+  { name: 'T-Shirts', image: '/images/products/navy-and-green-stripe-t-shirt1.webp', link: '/shop?category=t-shirts' },
+  { name: 'Tops', image: '/images/products/purple-cutwork-top1.webp', link: '/shop?category=tops' },
 ];
 
 export default function Home() {
@@ -23,11 +29,23 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSlider />
 
-      {/* Shop by Category - Accordion */}
+      {/* Shop by Category - Two Rows */}
       <ScrollReveal as="section" className={styles.categorySection}>
         <div className={styles.categoryGrid}>
-          {categories.map((cat, idx) => (
-            <Link key={idx} href={cat.link} className={styles.categoryCard}>
+          {row1Categories.map((cat, idx) => (
+            <Link key={`row1-${idx}`} href={cat.link} className={styles.categoryCard}>
+              <div className={styles.categoryImageWrapper}>
+                <img src={cat.image} alt={cat.name} loading="lazy" />
+              </div>
+              <div className={styles.categoryContent}>
+                <h3 className={styles.categoryName}>{cat.name}</h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className={styles.categoryGrid}>
+          {row2Categories.map((cat, idx) => (
+            <Link key={`row2-${idx}`} href={cat.link} className={styles.categoryCard}>
               <div className={styles.categoryImageWrapper}>
                 <img src={cat.image} alt={cat.name} loading="lazy" />
               </div>
@@ -52,6 +70,21 @@ export default function Home() {
           {newArrivals.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
+        </div>
+      </ScrollReveal>
+
+      {/* Sale Banner */}
+      <ScrollReveal as="section" className="container">
+        <div className={styles.saleBanner}>
+          <div className={styles.saleContent}>
+            <span className={styles.saleTag}>SUMMER SALE</span>
+            <h2 className={styles.saleTitle}>Up to 30% Off</h2>
+            <p className={styles.saleSubtitle}>On selected items</p>
+            <Link href="/shop?sale=true" className="btn btn-secondary">SHOP NOW</Link>
+          </div>
+          <div className={styles.saleImageWrapper}>
+            <img src="/images/products/peacock-stripe-long-dress1.webp" alt="Summer Sale" loading="lazy" />
+          </div>
         </div>
       </ScrollReveal>
 

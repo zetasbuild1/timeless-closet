@@ -51,7 +51,7 @@ function ShopContent() {
     { name: 'T-Shirts', count: products.filter(p => p.category === 'T-Shirts').length },
     { name: 'Shirts', count: products.filter(p => p.category === 'Shirts').length },
     { name: 'Dresses', count: products.filter(p => p.category === 'Dresses').length },
-    { name: 'Jeans', count: products.filter(p => p.category === 'Jeans').length },
+    { name: 'Pants', count: products.filter(p => p.category === 'Pants').length },
     { name: 'Jackets', count: products.filter(p => p.category === 'Jackets').length },
   ];
 

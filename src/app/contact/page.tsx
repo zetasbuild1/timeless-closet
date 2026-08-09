@@ -25,7 +25,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className={styles.itemTitle}>Email</h4>
-                <p className={styles.itemText}>hello@timeless.com</p>
+                <p className={styles.itemText}>cgholdingssl@gmail.com</p>
               </div>
             </div>
             
@@ -35,19 +35,11 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className={styles.itemTitle}>Phone</h4>
-                <p className={styles.itemText}>+94 11 234 4567</p>
+                <p className={styles.itemText}>+94 76 867 8104</p>
               </div>
             </div>
 
-            <div className={styles.contactItem}>
-              <div className={styles.icon}>
-                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              </div>
-              <div>
-                <h4 className={styles.itemTitle}>Address</h4>
-                <p className={styles.itemText}>123 Fashion Street, Colombo 03, Sri Lanka</p>
-              </div>
-            </div>
+
           </div>
         </div>
 

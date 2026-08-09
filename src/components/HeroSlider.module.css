@@ -54,21 +54,15 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 55%; /* Take up more than half, let overlay blend it */
+  width: 60%; /* Take up a bit more space for fading */
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 25%);
+  mask-image: linear-gradient(to right, transparent, black 25%);
 }
 
-.imageOverlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 55%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
+
 
 .heroContainer {
   width: 100%;
@@ -172,8 +166,7 @@
 }
 
 @media (max-width: 768px) {
-  .heroImage { width: 100%; opacity: 0.2; }
-  .imageOverlay { width: 100%; }
+  .heroImage { width: 100%; opacity: 0.2; -webkit-mask-image: none; mask-image: none; }
   .heroContent { width: 100%; text-align: center; padding-right: 0; }
   .heroBtns { justify-content: center; }
 }

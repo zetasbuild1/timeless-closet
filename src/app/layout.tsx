@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -30,6 +31,7 @@ export default function RootLayout({
         </Suspense>
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

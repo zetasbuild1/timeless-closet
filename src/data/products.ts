@@ -41,14 +41,15 @@ export const products: Product[] = [
     description: "Timeless. Easy. Made to wear for years. Perfect for everyday wear.",
     details: [
       "Premium handpicked quality",
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
   {
     id: "2",
     name: "Floral Peplum Top",
-    price: 2900,
+    price: 1950,
+    originalPrice: 2900,
     image: "/images/products/floral-peplum-top1.webp",
     hoverImage: "/images/products/floral-peplum-top2.webp",
     images: [
@@ -66,7 +67,7 @@ export const products: Product[] = [
     reviews: 101,
     description: "Timeless. Effortless. Always in style. Perfect for everyday looks",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -90,14 +91,15 @@ export const products: Product[] = [
     reviews: 91,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
   {
     id: "4",
     name: "Purple Cutwork Top",
-    price: 3500,
+    price: 2250,
+    originalPrice: 3500,
     image: "/images/products/purple-cutwork-top1.webp",
     hoverImage: "/images/products/purple-cutwork-top2.webp",
     images: [
@@ -116,7 +118,7 @@ export const products: Product[] = [
     reviews: 21,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -142,7 +144,7 @@ export const products: Product[] = [
     reviews: 58,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -167,7 +169,7 @@ export const products: Product[] = [
     reviews: 46,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -191,14 +193,15 @@ export const products: Product[] = [
     reviews: 67,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
   {
     id: "8",
     name: "Pink Stripe Ladies Oversized Shirt",
-    price: 3500,
+    price: 2300,
+    originalPrice: 3500,
     image: "/images/products/pink-stripe-ladies-oversized-shirt1.webp",
     hoverImage: "/images/products/pink-stripe-ladies-oversized-shirt2.webp",
     images: [
@@ -216,7 +219,7 @@ export const products: Product[] = [
     reviews: 43,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -240,7 +243,7 @@ export const products: Product[] = [
     reviews: 72,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -264,7 +267,7 @@ export const products: Product[] = [
     reviews: 41,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -288,7 +291,7 @@ export const products: Product[] = [
     reviews: 109,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -312,7 +315,7 @@ export const products: Product[] = [
     reviews: 46,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   },
@@ -336,7 +339,7 @@ export const products: Product[] = [
     reviews: 42,
     description: "Timeless. Effortless. Always in style.",
     details: [
-      "WhatsApp to order: 0768 678 104",
+      "WhatsApp to order: +94 76 867 8104",
       "Cash on Delivery | Bank Deposits"
     ]
   }

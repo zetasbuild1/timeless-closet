@@ -5,10 +5,9 @@ import Link from "next/link";
 import styles from "./SaleBanner.module.css";
 
 const SLIDER_IMAGES = [
-  "/images/products/peacock-stripe-long-dress1.webp",
-  "/images/products/floral-peplum-top1.webp",
-  "/images/products/mens-olive-stripe-short-sleeve-shirt1.webp",
-  "/images/products/pink-stripe-ladies-oversized-shirt1.webp"
+  "/images/sale1.jpg",
+  "/images/sale2.jpg",
+  "/images/sale3.jpg"
 ];
 
 export default function SaleBanner() {

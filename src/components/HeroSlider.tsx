@@ -8,10 +8,10 @@ import styles from "./HeroSlider.module.css";
 const slides = [
   {
     id: 1,
-    tag: "Hot Looks 2026",
-    title: "Summer<br/>Mini Frocks.",
-    subtitle: "Discover the perfect dress for a sun-kissed day.",
-    image: "/images/products/floral-print-mini-dress1.webp",
+    tag: "Timeless Collection",
+    title: "Elevate Your<br/>Wardrobe.",
+    subtitle: "Discover styles designed to last beyond the seasons.",
+    image: "/images/home-hero1.jpg",
     bgColor: "#efece8"
   },
   {
@@ -19,7 +19,7 @@ const slides = [
     tag: "Summer Essentials",
     title: "Embrace the<br/>Sunlight.",
     subtitle: "Lightweight fabrics for warmer days.",
-    image: "/images/products/floral-peplum-top1.webp",
+    image: "/images/home-hero2.jpg",
     bgColor: "#efece8"
   },
   {
@@ -27,7 +27,7 @@ const slides = [
     tag: "Premium Quality",
     title: "Crafted for<br/>Elegance.",
     subtitle: "Discover our premium selection of elegant attire.",
-    image: "/images/products/peacock-stripe-long-dress2.webp",
+    image: "/images/home-hero3.jpg",
     bgColor: "#efece8"
   }
 ];
@@ -58,7 +58,7 @@ export default function HeroSlider() {
             alt="Fashion models"
             className={styles.heroImage}
           />
-          <div className={styles.imageOverlay} style={{ background: `linear-gradient(to right, ${slide.bgColor} 0%, transparent 100%)` }}></div>
+
 
           <div className={`container ${styles.heroContainer}`}>
             <div className={styles.heroContent}>
@@ -69,10 +69,10 @@ export default function HeroSlider() {
               />
               <p className={styles.heroSubtitle}>{slide.subtitle}</p>
               <div className={styles.heroBtns}>
-                <Link href="/shop?category=women">
+                <Link href="/shop?gender=women">
                   <Button variant="primary" size="lg">SHOP WOMEN</Button>
                 </Link>
-                <Link href="/shop?category=men">
+                <Link href="/shop?gender=men">
                   <Button variant="outline" size="lg">SHOP MEN</Button>
                 </Link>
               </div>

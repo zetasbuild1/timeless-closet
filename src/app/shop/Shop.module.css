@@ -326,9 +326,8 @@
 
 @media (max-width: 480px) {
   .productGrid {
-    grid-template-columns: minmax(auto, 340px);
-    justify-content: center;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
   .sortControls {
     flex-direction: column;

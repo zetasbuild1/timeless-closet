@@ -190,17 +190,7 @@
   margin-left: 0.25rem;
 }
 
-@media (max-width: 768px) {
-  .actions {
-    bottom: 10px;
-  }
-  
-  .quickAddBtn, .actionBtn {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
+/* Mobile styles removed to allow iOS to use tap-to-hover for the 2nd image and quick add button */
 @media (max-width: 480px) {
   .info {
     align-items: center;

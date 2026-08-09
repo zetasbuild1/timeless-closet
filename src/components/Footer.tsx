@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import ScrollReveal from './ScrollReveal';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.grid}`}>
+      <ScrollReveal className={`container ${styles.grid}`}>
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logoLink}>
             <img src="/images/logo.PNG" alt="Timeless Logo" className={styles.logoImage} />
@@ -59,7 +60,7 @@ export default function Footer() {
         </div>
 
 
-      </div>
+      </ScrollReveal>
 
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>

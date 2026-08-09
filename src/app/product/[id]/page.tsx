@@ -5,6 +5,7 @@ import Link from "next/link";
 import { products } from "@/data/products";
 import styles from "./ProductDetail.module.css";
 import Button from "@/components/ui/Button";
+import ScrollReveal from "@/components/ScrollReveal";
 import { useParams } from "next/navigation";
 
 export default function ProductDetailPage() {
@@ -146,7 +147,7 @@ export default function ProductDetailPage() {
         <span>{product.name}</span>
       </div>
 
-      <div className={styles.content}>
+      <ScrollReveal className={styles.content}>
         {/* Gallery */}
         <div className={styles.gallery}>
           <div className={styles.thumbnails}>
@@ -323,7 +324,7 @@ export default function ProductDetailPage() {
           </div>
 
         </div>
-      </div>
+      </ScrollReveal>
     </div>
   );
 }

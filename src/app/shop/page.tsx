@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import styles from "./Shop.module.css";
 import ProductCard from "@/components/ProductCard";
+import ScrollReveal from "@/components/ScrollReveal";
 import { products } from "@/data/products";
 
 function ShopContent() {
@@ -110,7 +111,7 @@ function ShopContent() {
         )}
       </div>
 
-      <div className={styles.shopContainer}>
+      <ScrollReveal className={styles.shopContainer}>
         {/* Sidebar Filters */}
         <div className={`${styles.sidebarOverlay} ${isMobileFiltersOpen ? styles.overlayOpen : ''}`} onClick={() => setIsMobileFiltersOpen(false)}></div>
         <aside className={`${styles.sidebar} ${isMobileFiltersOpen ? styles.sidebarOpen : ''}`}>
@@ -247,7 +248,7 @@ function ShopContent() {
             </div>
           )}
         </main>
-      </div>
+      </ScrollReveal>
     </div>
   );
 }

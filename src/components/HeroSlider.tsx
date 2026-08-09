@@ -11,24 +11,24 @@ const slides = [
     tag: "Hot Looks 2026",
     title: "Summer<br/>Mini Frocks.",
     subtitle: "Discover the perfect dress for a sun-kissed day.",
-    image: "/images/products/mini-frock-floral.jpg",
-    bgColor: "#f3e8e6"
+    image: "/images/products/floral-print-mini-dress1.webp",
+    bgColor: "#efece8"
   },
   {
     id: 2,
     tag: "Summer Essentials",
     title: "Embrace the<br/>Sunlight.",
     subtitle: "Lightweight fabrics for warmer days.",
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    bgColor: "#f3f0eb"
+    image: "/images/products/floral-peplum-top1.webp",
+    bgColor: "#efece8"
   },
   {
     id: 3,
     tag: "Premium Quality",
     title: "Crafted for<br/>Elegance.",
-    subtitle: "Discover our premium selection of coats and jackets.",
-    image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    bgColor: "#ececec"
+    subtitle: "Discover our premium selection of elegant attire.",
+    image: "/images/products/peacock-stripe-long-dress2.webp",
+    bgColor: "#efece8"
   }
 ];
 

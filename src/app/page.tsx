@@ -5,6 +5,7 @@ import FeaturesBar from "@/components/FeaturesBar";
 import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
 import ScrollReveal from "@/components/ScrollReveal";
+import SaleBanner from "@/components/SaleBanner";
 import { products } from "@/data/products";
 
 const row1Categories = [
@@ -73,19 +74,9 @@ export default function Home() {
         </div>
       </ScrollReveal>
 
-      {/* Sale Banner */}
+      {/* Sale Banner Component */}
       <ScrollReveal as="section" className="container">
-        <div className={styles.saleBanner}>
-          <div className={styles.saleContent}>
-            <span className={styles.saleTag}>SUMMER SALE</span>
-            <h2 className={styles.saleTitle}>Up to 30% Off</h2>
-            <p className={styles.saleSubtitle}>On selected items</p>
-            <Link href="/shop?sale=true" className="btn btn-secondary">SHOP NOW</Link>
-          </div>
-          <div className={styles.saleImageWrapper}>
-            <img src="/images/products/peacock-stripe-long-dress1.webp" alt="Summer Sale" loading="lazy" />
-          </div>
-        </div>
+        <SaleBanner />
       </ScrollReveal>
 
 

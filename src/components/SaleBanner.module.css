@@ -1,0 +1,133 @@
+.saleBanner {
+  background: linear-gradient(135deg, #710909, #4a0404);
+  color: white;
+  margin: 4rem 0;
+  display: flex;
+  align-items: stretch;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.saleContent {
+  flex: 1;
+  padding: 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Subtle pattern overlay on the red */
+.saleContent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.saleTag {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+}
+
+.saleTitle {
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+
+.saleSubtitle {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+}
+
+.shopNowBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.shopNowBtn svg {
+  transition: transform 0.3s ease;
+}
+
+.shopNowBtn:hover {
+  border-bottom-color: white;
+}
+
+.shopNowBtn:hover svg {
+  transform: translateX(4px);
+}
+
+.saleImageWrapper {
+  flex: 1;
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  background-color: #f5f3ef;
+}
+
+.sliderImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.5s ease, transform 6s ease;
+}
+
+.sliderImage.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .saleBanner {
+    flex-direction: column;
+    margin: 3rem 0;
+  }
+  .saleContent {
+    padding: 3rem 2rem;
+    text-align: center;
+    align-items: center;
+  }
+  .saleTitle {
+    font-size: 2.5rem;
+  }
+  .saleImageWrapper {
+    width: 100%;
+    min-height: 400px;
+  }
+}

@@ -111,7 +111,7 @@ function ShopContent() {
         )}
       </div>
 
-      <ScrollReveal className={styles.shopContainer}>
+      <div className={styles.shopContainer}>
         {/* Sidebar Filters */}
         <div className={`${styles.sidebarOverlay} ${isMobileFiltersOpen ? styles.overlayOpen : ''}`} onClick={() => setIsMobileFiltersOpen(false)}></div>
         <aside className={`${styles.sidebar} ${isMobileFiltersOpen ? styles.sidebarOpen : ''}`}>
@@ -178,7 +178,7 @@ function ShopContent() {
         </aside>
 
         {/* Main Content */}
-        <main className={styles.mainContent}>
+        <ScrollReveal className={styles.mainContent}>
           <div className={styles.topBar}>
             <div className={styles.mobileFilterRow}>
               <h1 className={styles.pageTitle}>
@@ -247,8 +247,8 @@ function ShopContent() {
               )}
             </div>
           )}
-        </main>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
     </div>
   );
 }

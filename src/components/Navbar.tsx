@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(0);
   
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -21,13 +22,23 @@ export default function Navbar() {
     setCartCount(count);
   };
 
+  const updateWishlistCount = () => {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    setWishlistCount(wishlist.length);
+  };
+
   useEffect(() => {
     updateCartCount();
+    updateWishlistCount();
     window.addEventListener('cartUpdated', updateCartCount);
-    window.addEventListener('storage', updateCartCount);
+    window.addEventListener('wishlistUpdated', updateWishlistCount);
+    window.addEventListener('storage', (e) => {
+      updateCartCount();
+      updateWishlistCount();
+    });
     return () => {
       window.removeEventListener('cartUpdated', updateCartCount);
-      window.removeEventListener('storage', updateCartCount);
+      window.removeEventListener('wishlistUpdated', updateWishlistCount);
     };
   }, []);
 
@@ -90,6 +101,10 @@ export default function Navbar() {
         </ul>
         
         <div className={styles.navIcons}>
+          <Link href="/wishlist" aria-label="Wishlist" className={styles.cartIcon}>
+            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span className={styles.cartBadge}>{wishlistCount}</span>
+          </Link>
           <button 
             aria-label="Cart" 
             className={`${styles.cartIcon} ${isAnimating ? styles.cartAnimating : ''}`}

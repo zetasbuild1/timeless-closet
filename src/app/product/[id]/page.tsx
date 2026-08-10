@@ -62,6 +62,7 @@ export default function ProductDetailPage() {
       localStorage.setItem('wishlist', JSON.stringify(wishlist));
       setIsWishlisted(true);
     }
+    window.dispatchEvent(new Event('wishlistUpdated'));
   };
 
   const addToCart = () => {

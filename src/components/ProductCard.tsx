@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Product } from '@/data/products';
 import QuickAddButton from './QuickAddButton';
@@ -8,6 +10,40 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  useEffect(() => {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    setIsWishlisted(wishlist.includes(product.id));
+
+    const updateWishlist = () => {
+      const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      setIsWishlisted(wishlist.includes(product.id));
+    };
+
+    window.addEventListener('wishlistUpdated', updateWishlist);
+    window.addEventListener('storage', updateWishlist);
+    return () => {
+      window.removeEventListener('wishlistUpdated', updateWishlist);
+      window.removeEventListener('storage', updateWishlist);
+    };
+  }, [product.id]);
+
+  const toggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigating to product page
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    if (isWishlisted) {
+      const newWishlist = wishlist.filter((item: string) => item !== product.id);
+      localStorage.setItem('wishlist', JSON.stringify(newWishlist));
+      setIsWishlisted(false);
+    } else {
+      wishlist.push(product.id);
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      setIsWishlisted(true);
+    }
+    window.dispatchEvent(new Event('wishlistUpdated'));
+  };
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-LK', {
       style: 'currency',
@@ -27,8 +63,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         
         <div className={styles.actions}>
           <QuickAddButton className={styles.quickAddBtn} />
-          <button className={styles.actionBtn} aria-label="Add to Wishlist">
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <button 
+            className={styles.actionBtn} 
+            aria-label="Add to Wishlist"
+            onClick={toggleWishlist}
+          >
+            <svg width="20" height="20" fill={isWishlisted ? "var(--color-primary)" : "none"} stroke={isWishlisted ? "var(--color-primary)" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
           </button>
         </div>
       </div>

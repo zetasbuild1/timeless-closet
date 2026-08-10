@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import MiniCart from './MiniCart';
@@ -10,9 +10,26 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const count = cart.reduce((total: number, item: any) => total + item.quantity, 0);
+    setCartCount(count);
+  };
+
+  useEffect(() => {
+    updateCartCount();
+    window.addEventListener('cartUpdated', updateCartCount);
+    window.addEventListener('storage', updateCartCount);
+    return () => {
+      window.removeEventListener('cartUpdated', updateCartCount);
+      window.removeEventListener('storage', updateCartCount);
+    };
+  }, []);
 
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -79,7 +96,7 @@ export default function Navbar() {
             onClick={handleCartClick}
           >
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            <span className={`${styles.cartBadge} ${isAnimating ? styles.badgeBounce : ''}`}>0</span>
+            <span className={`${styles.cartBadge} ${isAnimating ? styles.badgeBounce : ''}`}>{cartCount}</span>
           </button>
           
           <button 

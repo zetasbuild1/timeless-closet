@@ -28,6 +28,7 @@ export default function CartPage() {
   const updateCart = (newCart: CartItem[]) => {
     setCartItems(newCart);
     localStorage.setItem('cart', JSON.stringify(newCart));
+    window.dispatchEvent(new Event('cartUpdated'));
   };
 
   const removeItem = (index: number) => {

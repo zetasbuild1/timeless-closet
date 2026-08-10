@@ -88,6 +88,7 @@ export default function ProductDetailPage() {
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
+    window.dispatchEvent(new Event('cartUpdated'));
     
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);

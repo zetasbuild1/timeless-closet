@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { useProducts } from "@/context/ProductContext";
 import ProductCard from "@/components/ProductCard";
 import Button from "@/components/ui/Button";
 import styles from "./Wishlist.module.css";
 
 export default function WishlistPage() {
+  const { products } = useProducts();
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -26,7 +27,7 @@ export default function WishlistPage() {
       window.removeEventListener('wishlistUpdated', loadWishlist);
       window.removeEventListener('storage', loadWishlist);
     };
-  }, []);
+  }, [products]);
 
   if (!isLoaded) return null;
 

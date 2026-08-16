@@ -56,6 +56,7 @@ export default function Footer() {
             <li><Link href="/terms">Terms & Conditions</Link></li>
             <li><Link href="/refund">Refund Policy</Link></li>
             <li><Link href="/careers">Careers</Link></li>
+            <li><Link href="/admin" style={{ opacity: 0.8 }}>Admin Portal</Link></li>
           </ul>
         </div>
 

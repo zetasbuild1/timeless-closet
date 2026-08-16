@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Great_Vibes } from "next/font/google";
-import { Suspense } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
-import CustomCursor from "@/components/CustomCursor";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import { ProductProvider } from "@/context/ProductContext";
+import StorefrontLayout from "@/components/StorefrontLayout";
 import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -24,15 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} ${greatVibes.variable}`}>
-        <CustomCursor />
-        <Preloader />
-        <Suspense fallback={null}>
-          <Navbar />
-        </Suspense>
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <ProductProvider>
+          <StorefrontLayout>{children}</StorefrontLayout>
+        </ProductProvider>
       </body>
     </html>
   );
 }
+

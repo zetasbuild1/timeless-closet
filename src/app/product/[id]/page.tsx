@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { useProducts } from "@/context/ProductContext";
 import styles from "./ProductDetail.module.css";
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -11,6 +11,7 @@ import { useParams } from "next/navigation";
 export default function ProductDetailPage() {
   const params = useParams();
   const id = params?.id as string;
+  const { products } = useProducts();
   const product = products.find(p => p.id === id) || products[0];
 
   const defaultSizes = ['XS', 'S', 'M', 'L', 'XL'];
@@ -218,6 +219,35 @@ export default function ProductDetailPage() {
             <span className={styles.reviewCount}>({product.reviews || 0} reviews)</span>
           </div>
 
+          {/* Stock Status Badge */}
+          <div style={{ marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                padding: '0.3rem 0.75rem',
+                borderRadius: '20px',
+                background: product.inStock === false ? '#fee2e2' : '#dcfce7',
+                color: product.inStock === false ? '#b71c1c' : '#15803d',
+                border: `1px solid ${product.inStock === false ? '#fecaca' : '#bbf7d0'}`,
+              }}
+            >
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  backgroundColor: product.inStock === false ? '#dc2626' : '#16a34a',
+                  display: 'inline-block',
+                }}
+              />
+              <span>{product.inStock === false ? 'Out of Stock' : 'In Stock'}</span>
+            </span>
+          </div>
+
           <p className={styles.description}>
             {product.description || `Beautiful ${product.name.toLowerCase()} perfect for summer days. Made with lightweight fabric for ultimate comfort.`}
           </p>
@@ -255,9 +285,9 @@ export default function ProductDetailPage() {
           <div className={styles.selector}>
             <span className={styles.selectorLabel}>Quantity</span>
             <div className={styles.quantity}>
-              <button className={styles.qtyBtn} onClick={decreaseQty}>-</button>
+              <button className={styles.qtyBtn} onClick={decreaseQty} disabled={product.inStock === false}>-</button>
               <input type="number" value={quantity} readOnly className={styles.qtyInput} />
-              <button className={styles.qtyBtn} onClick={increaseQty}>+</button>
+              <button className={styles.qtyBtn} onClick={increaseQty} disabled={product.inStock === false}>+</button>
             </div>
           </div>
 
@@ -267,17 +297,24 @@ export default function ProductDetailPage() {
                 variant="primary" 
                 size="lg" 
                 fullWidth 
-                onClick={addToCart}
-                style={{ backgroundColor: isAdded ? '#10b981' : undefined, borderColor: isAdded ? '#10b981' : undefined }}
+                onClick={product.inStock === false ? undefined : addToCart}
+                disabled={product.inStock === false}
+                style={{ 
+                  backgroundColor: product.inStock === false ? '#94a3b8' : (isAdded ? '#10b981' : undefined), 
+                  borderColor: product.inStock === false ? '#94a3b8' : (isAdded ? '#10b981' : undefined),
+                  cursor: product.inStock === false ? 'not-allowed' : 'pointer'
+                }}
               >
-                {isAdded ? 'ADDED TO CART ✓' : 'ADD TO CART'}
+                {product.inStock === false ? 'SOLD OUT' : (isAdded ? 'ADDED TO CART ✓' : 'ADD TO CART')}
               </Button>
             </div>
-            <div style={{ flex: 1 }}>
-              <Link href="/checkout" onClick={(e) => { if(!isAdded) addToCart(); }}>
-                <Button variant="outline" size="lg" fullWidth>BUY NOW</Button>
-              </Link>
-            </div>
+            {product.inStock !== false && (
+              <div style={{ flex: 1 }}>
+                <Link href="/checkout" onClick={(e) => { if(!isAdded) addToCart(); }}>
+                  <Button variant="outline" size="lg" fullWidth>BUY NOW</Button>
+                </Link>
+              </div>
+            )}
           </div>
 
           <button className={styles.wishlistBtn} onClick={toggleWishlist}>
@@ -321,6 +358,48 @@ export default function ProductDetailPage() {
                 <p>Free delivery for orders over LKR 7,000</p>
                 <p>14-day easy returns</p>
                 <p>Ships within 1-2 business days</p>
+              </div>
+            </details>
+            <details className={styles.accordion} open>
+              <summary className={styles.accordionHeader}>
+                Customer Reviews ({product.customerReviews?.length || product.reviews || 0})
+              </summary>
+              <div className={styles.accordionContent}>
+                {product.customerReviews && product.customerReviews.length > 0 ? (
+                  <div className={styles.reviewsList}>
+                    {product.customerReviews.map((rev) => (
+                      <div key={rev.id} className={styles.reviewCard}>
+                        <div className={styles.reviewCardHeader}>
+                          <div className={styles.reviewerInfo}>
+                            <span className={styles.reviewerName}>{rev.author}</span>
+                            {rev.verified && (
+                              <span className={styles.verifiedPill}>✓ Verified Buyer</span>
+                            )}
+                            <span className={styles.reviewDate}>{rev.date}</span>
+                          </div>
+                          <div className={styles.reviewCardStars}>
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <svg
+                                key={star}
+                                width="14"
+                                height="14"
+                                fill={star <= rev.rating ? "#f59e0b" : "#e5e7eb"}
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                              </svg>
+                            ))}
+                          </div>
+                        </div>
+                        <p className={styles.reviewText}>"{rev.comment}"</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ color: 'var(--color-text-light)', fontStyle: 'italic' }}>
+                    Rated {product.rating || 5.0} / 5.0 stars by {product.reviews || 0} happy customers.
+                  </p>
+                )}
               </div>
             </details>
           </div>

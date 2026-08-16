@@ -52,17 +52,25 @@ export default function ProductCard({ product }: ProductCardProps) {
     }).format(price);
   };
 
+  const isOutOfStock = product.inStock === false;
+
   return (
     <Link href={`/product/${product.id}`} className={styles.card}>
-      <div className={styles.imageContainer}>
+      <div className={`${styles.imageContainer} ${isOutOfStock ? styles.outOfStockImage : ''}`}>
         <img src={product.image} alt={product.name} className={styles.primaryImage} loading="lazy" />
         <img src={product.hoverImage || product.image} alt={product.name} className={styles.secondaryImage} loading="lazy" />
         
-        {product.isNew && <span className={`${styles.badge} ${styles.badgeNew}`}>New</span>}
-        {product.isOnSale && <span className={`${styles.badge} ${styles.badgeSale}`}>-30%</span>}
+        {isOutOfStock ? (
+          <span className={`${styles.badge} ${styles.badgeOutOfStock}`}>Sold Out</span>
+        ) : (
+          <>
+            {product.isNew && <span className={`${styles.badge} ${styles.badgeNew}`}>New</span>}
+            {product.isOnSale && <span className={`${styles.badge} ${styles.badgeSale}`}>-30%</span>}
+          </>
+        )}
         
         <div className={styles.actions}>
-          <QuickAddButton className={styles.quickAddBtn} />
+          {!isOutOfStock && <QuickAddButton className={styles.quickAddBtn} />}
           <button 
             className={styles.actionBtn} 
             aria-label="Add to Wishlist"

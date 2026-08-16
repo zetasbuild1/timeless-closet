@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./page.module.css";
 import Button from "@/components/ui/Button";
@@ -6,7 +8,7 @@ import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
 import ScrollReveal from "@/components/ScrollReveal";
 import SaleBanner from "@/components/SaleBanner";
-import { products } from "@/data/products";
+import { useProducts } from "@/context/ProductContext";
 
 const row1Categories = [
   { name: 'Women', image: '/images/products/floral-print-mini-dress1.webp', link: '/shop?gender=women' },
@@ -22,8 +24,9 @@ const row2Categories = [
 ];
 
 export default function Home() {
-  const newArrivals = [...products].filter(p => p.isNew).reverse().slice(0, 4);
-  const bestSellers = [...products].filter(p => p.isBestSeller).reverse().slice(0, 4);
+  const { products } = useProducts();
+  const newArrivals = [...products].filter(p => p.isNew).slice(0, 4);
+  const bestSellers = [...products].filter(p => p.isBestSeller).slice(0, 4);
 
   return (
     <main className={styles.main}>

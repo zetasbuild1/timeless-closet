@@ -1,3 +1,12 @@
+export interface ReviewItem {
+  id: string;
+  author: string;
+  rating: number;
+  date: string;
+  comment: string;
+  verified?: boolean;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -7,8 +16,10 @@ export interface Product {
   category: string;
   isNew?: boolean;
   isOnSale?: boolean;
+  inStock?: boolean;
   rating?: number;
   reviews?: number;
+  customerReviews?: ReviewItem[];
   sizes?: string[];
   colors?: string[];
   gender?: 'Women' | 'Men' | 'Unisex';

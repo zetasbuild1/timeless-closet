@@ -90,9 +90,13 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-/* Hide default cursor on desktop devices to show CustomCursor */
+/* Hide default cursor on desktop devices to show CustomCursor only on storefront */
 @media (min-width: 768px) {
-  *, *::before, *::after {
+  body.has-custom-cursor,
+  body.has-custom-cursor *,
+  body.has-custom-cursor *::before,
+  body.has-custom-cursor *::after {
     cursor: none !important;
   }
 }
+

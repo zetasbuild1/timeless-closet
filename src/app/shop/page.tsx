@@ -1,22 +1,29 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import styles from "./Shop.module.css";
 import ProductCard from "@/components/ProductCard";
 import ScrollReveal from "@/components/ScrollReveal";
-import { products } from "@/data/products";
+import { useProducts } from "@/context/ProductContext";
 
 function ShopContent() {
+  const { products } = useProducts();
   const searchParams = useSearchParams();
   const genderParam = searchParams?.get('gender');
   const newParam = searchParams?.get('new');
   const saleParam = searchParams?.get('sale');
   const categoryParam = searchParams?.get('category');
 
-  const validCategories = ['Tops', 'T-Shirts', 'Shirts', 'Dresses', 'Pants', 'Jackets'];
-  const matchedCategory = validCategories.find(c => c.toLowerCase() === categoryParam?.toLowerCase()) || 'All';
+  // Compute unique categories dynamically from products
+  const dynamicCategoryNames = useMemo(() => {
+    const defaultCats = ['Tops', 'T-Shirts', 'Shirts', 'Dresses', 'Pants', 'Jackets'];
+    const fromProducts = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
+    return Array.from(new Set([...defaultCats, ...fromProducts]));
+  }, [products]);
+
+  const matchedCategory = dynamicCategoryNames.find(c => c.toLowerCase() === categoryParam?.toLowerCase()) || 'All';
 
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([matchedCategory]);
@@ -24,6 +31,14 @@ function ShopContent() {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
+  // Update selected category if URL category changes
+  useEffect(() => {
+    if (categoryParam) {
+      const match = dynamicCategoryNames.find(c => c.toLowerCase() === categoryParam.toLowerCase());
+      if (match) setSelectedCategories([match]);
+    }
+  }, [categoryParam, dynamicCategoryNames]);
 
   // Filtering Logic
   const filteredProducts = products.filter(product => {
@@ -33,7 +48,7 @@ function ShopContent() {
     const matchesColor = selectedColors.length === 0 || (product.colors && selectedColors.some(c => product.colors!.includes(c)));
     
     // Query param filters
-    const matchesGender = !genderParam || product.gender?.toLowerCase() === genderParam;
+    const matchesGender = !genderParam || product.gender?.toLowerCase() === genderParam.toLowerCase();
     const matchesNew = !newParam || product.isNew === true;
     const matchesSale = !saleParam || !!product.originalPrice;
 
@@ -50,15 +65,13 @@ function ShopContent() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
 
-  const categories = [
+  const categories = useMemo(() => [
     { name: 'All', count: products.length },
-    { name: 'Tops', count: products.filter(p => p.category === 'Tops').length },
-    { name: 'T-Shirts', count: products.filter(p => p.category === 'T-Shirts').length },
-    { name: 'Shirts', count: products.filter(p => p.category === 'Shirts').length },
-    { name: 'Dresses', count: products.filter(p => p.category === 'Dresses').length },
-    { name: 'Pants', count: products.filter(p => p.category === 'Pants').length },
-    { name: 'Jackets', count: products.filter(p => p.category === 'Jackets').length },
-  ];
+    ...dynamicCategoryNames.map(cat => ({
+      name: cat,
+      count: products.filter(p => p.category?.toLowerCase() === cat.toLowerCase()).length
+    }))
+  ], [products, dynamicCategoryNames]);
 
   const sizes = ['S', 'M', 'L', 'XL', 'XXL', '2', '4', '6', 'UK8', 'UK10', 'UK12'];
   const colors = ['#000000', '#ffffff', '#e0d8d0', '#546e7a', '#b71c1c', '#388e3c', '#800080', '#000080', '#008000'];

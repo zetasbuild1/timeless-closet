@@ -167,7 +167,10 @@ export async function updateProduct(id: string, updates: Partial<Product>): Prom
 export async function deleteProduct(id: string): Promise<boolean> {
   if (isFirebaseConfigured()) {
     try {
-      await deleteProductFromFirestore(id);
+      const success = await deleteProductFromFirestore(id);
+      if (!success) {
+        throw new Error(`Failed to delete product ${id} from Firestore`);
+      }
       // Also delete from local
       getLocalProducts().then(localProds => {
         saveLocalProducts(localProds.filter(p => p.id !== id)).catch(() => {});
@@ -175,6 +178,8 @@ export async function deleteProduct(id: string): Promise<boolean> {
       return true;
     } catch (err) {
       console.error(`Firestore deleteProduct(${id}) failed:`, err);
+      // Fallback to local if Firestore fails (or we can just fail the API call)
+      throw err;
     }
   }
 

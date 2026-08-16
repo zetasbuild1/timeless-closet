@@ -613,209 +613,117 @@ export default function AdminPage() {
                 </button>
               </div>
             ) : (
-              <div className={styles.tableWrapper}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Product</th>
-                      <th>Category</th>
-                      <th>Dept</th>
-                      <th>Price</th>
-                      <th>Stock Availability</th>
-                      <th>Rating & Reviews</th>
-                      <th>Sizes</th>
-                      <th>Badges (Click to Toggle)</th>
-                      <th style={{ textAlign: 'right' }}>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredProducts.map(product => {
-                      const discount = product.originalPrice
-                        ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-                        : null;
+              <div className={styles.productGrid}>
+                {filteredProducts.map(product => {
+                  const discount = product.originalPrice
+                    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+                    : null;
 
-                      return (
-                        <tr key={product.id}>
-                          {/* Product Title & Thumbnail */}
-                          <td>
-                            <div className={styles.productCell}>
-                              <img
-                                src={product.image || '/images/products/evergreen-shirt1.webp'}
-                                alt={product.name}
-                                className={styles.productThumb}
-                                loading="lazy"
-                              />
-                              <div className={styles.productInfo}>
-                                <span className={styles.productName}>{product.name}</span>
-                                <span className={styles.productId}>ID: #{product.id}</span>
-                              </div>
+                  return (
+                    <div key={product.id} className={styles.productCard}>
+                      <div className={styles.cardHeader}>
+                        <div className={styles.cardTitleGroup}>
+                          <img
+                            src={product.image || '/images/products/evergreen-shirt1.webp'}
+                            alt={product.name}
+                            className={styles.cardImage}
+                            loading="lazy"
+                          />
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                            <div className={styles.cardTitle} title={product.name}>{product.name}</div>
+                            <div className={styles.cardId}>
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                              {product.id}
                             </div>
-                          </td>
+                          </div>
+                        </div>
+                        <div className={styles.cardBadges}>
+                          <span className={styles.categoryBadge}>{product.category}</span>
+                          <span className={`${styles.genderBadge} ${product.gender === 'Women' ? styles.genderWomen : product.gender === 'Men' ? styles.genderMen : styles.genderUnisex}`}>
+                            {product.gender || 'Unisex'}
+                          </span>
+                        </div>
+                      </div>
 
-                          {/* Category */}
-                          <td>
-                            <span className={styles.categoryBadge}>{product.category}</span>
-                          </td>
-
-                          {/* Gender */}
-                          <td>
-                            <span
-                              className={`${styles.genderBadge} ${
-                                product.gender === 'Women'
-                                  ? styles.genderWomen
-                                  : product.gender === 'Men'
-                                  ? styles.genderMen
-                                  : styles.genderUnisex
-                              }`}
-                            >
-                              {product.gender || 'Unisex'}
+                      <div className={styles.cardBody}>
+                        <div className={styles.cardRow}>
+                          <div className={styles.cardInfoBlock}>
+                            <span className={styles.cardInfoLabel}>Price</span>
+                            <span className={styles.cardInfoValue}>
+                              {formatPrice(product.price)}
+                              {discount && <span style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 600 }}>(-{discount}%)</span>}
                             </span>
-                          </td>
-
-                          {/* Price */}
-                          <td>
-                            <div className={styles.priceCol}>
-                              <span className={styles.currentPrice}>{formatPrice(product.price)}</span>
-                              {product.originalPrice && (
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                  <span className={styles.origPrice}>{formatPrice(product.originalPrice)}</span>
-                                  <span style={{ fontSize: '0.72rem', color: '#16a34a', fontWeight: 600 }}>
-                                    -{discount}%
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                          </td>
-
-                          {/* Stock Availability */}
-                          <td>
+                          </div>
+                          <div className={styles.cardInfoBlock}>
+                            <span className={styles.cardInfoLabel}>Stock Status</span>
                             <button
                               type="button"
-                              className={`${styles.statusPill} ${
-                                product.inStock !== false
-                                  ? styles.statusPillActiveGreen
-                                  : styles.statusPillActiveRed
-                              }`}
+                              className={`${styles.statusPill} ${product.inStock !== false ? styles.statusPillActiveGreen : styles.statusPillActiveRed}`}
                               onClick={() => handleToggleStock(product)}
-                              title="Click to toggle In Stock / Out of Stock"
-                              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', cursor: 'pointer' }}
+                              title="Click to toggle Stock Status"
                             >
-                              <span>{product.inStock !== false ? 'In Stock' : 'Out of Stock'}</span>
+                              {product.inStock !== false ? 'In Stock' : 'Out of Stock'}
                             </button>
-                          </td>
+                          </div>
+                        </div>
 
-                          {/* Rating & Reviews */}
-                          <td>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                              <span style={{ color: '#f59e0b', fontSize: '0.95rem' }}>★</span>
-                              <span style={{ fontWeight: 600, color: '#0f172a' }}>{product.rating || 5.0}</span>
-                              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
-                                ({product.reviews ?? (product.customerReviews?.length || 0)})
-                              </span>
+                        <div className={styles.cardDivider} />
+
+                        <div className={styles.cardRow}>
+                          <div className={styles.cardInfoBlock}>
+                            <span className={styles.cardInfoLabel}>Performance</span>
+                            <span className={styles.cardInfoValue}>
+                              <span style={{ color: '#f59e0b', fontSize: '1.05rem' }}>★</span>
+                              {product.rating || 5.0} 
+                              <span style={{ fontSize: '0.8rem', color: '#64748b' }}>({product.reviews ?? 0} revs)</span>
+                            </span>
+                          </div>
+                          <div className={styles.cardInfoBlock}>
+                            <span className={styles.cardInfoLabel}>Tags</span>
+                            <div className={styles.statusToggles} style={{ marginTop: '0.1rem' }}>
+                              <button
+                                type="button"
+                                className={`${styles.statusPill} ${product.isNew ? styles.statusPillActiveRed : styles.statusPillInactive}`}
+                                onClick={() => handleStatusToggle(product, 'isNew')}
+                                title="Toggle New Arrival"
+                                style={{ padding: '0.15rem 0.45rem' }}
+                              >
+                                {product.isNew ? '🔥 NEW' : 'Off'}
+                              </button>
+                              <button
+                                type="button"
+                                className={`${styles.statusPill} ${product.isBestSeller ? styles.statusPillActiveAmber : styles.statusPillInactive}`}
+                                onClick={() => handleStatusToggle(product, 'isBestSeller')}
+                                title="Toggle Best Seller"
+                                style={{ padding: '0.15rem 0.45rem' }}
+                              >
+                                {product.isBestSeller ? '⭐ HOT' : 'Off'}
+                              </button>
                             </div>
-                          </td>
-
-                          {/* Sizes */}
-                          <td>
-                            <div style={{ display: 'flex', gap: '0.2rem', flexWrap: 'wrap', maxWidth: '140px' }}>
-                            {product.sizes && product.sizes.length > 0 ? (
-                              product.sizes.map(s => (
-                                <span
-                                  key={s}
-                                  style={{
-                                    fontSize: '0.72rem',
-                                    background: '#f1f5f9',
-                                    padding: '0.1rem 0.35rem',
-                                    borderRadius: '3px',
-                                    color: '#475569',
-                                  }}
-                                >
-                                  {s}
-                                </span>
-                              ))
-                            ) : (
-                              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>-</span>
-                            )}
                           </div>
-                        </td>
+                        </div>
+                      </div>
 
-                        {/* Status Toggles */}
-                        <td>
-                          <div className={styles.statusToggles}>
-                            <button
-                              type="button"
-                              className={`${styles.statusPill} ${
-                                product.isNew ? styles.statusPillActiveRed : styles.statusPillInactive
-                              }`}
-                              onClick={() => handleStatusToggle(product, 'isNew')}
-                              title="Click to toggle New Arrival status"
-                            >
-                              {product.isNew ? '🔥 NEW' : 'Off'}
-                            </button>
-
-                            <button
-                              type="button"
-                              className={`${styles.statusPill} ${
-                                product.isBestSeller ? styles.statusPillActiveAmber : styles.statusPillInactive
-                              }`}
-                              onClick={() => handleStatusToggle(product, 'isBestSeller')}
-                              title="Click to toggle Best Seller status"
-                            >
-                              {product.isBestSeller ? '⭐ BEST SELLER' : 'Off'}
-                            </button>
-                          </div>
-                        </td>
-
-                        {/* Actions */}
-                        <td>
-                          <div className={styles.actionGroup} style={{ justifyContent: 'flex-end' }}>
-                            {/* View in store */}
-                            <Link
-                              href={`/product/${product.id}`}
-                              target="_blank"
-                              className={styles.actionBtn}
-                              title="View product in live store"
-                            >
-                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                              </svg>
-                            </Link>
-
-                            {/* Edit */}
-                            <button
-                              type="button"
-                              className={`${styles.actionBtn} ${styles.editActionBtn}`}
-                              onClick={() => handleOpenEditModal(product)}
-                              title="Edit product details"
-                            >
-                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                              </svg>
-                            </button>
-
-                            {/* Delete */}
-                            <button
-                              type="button"
-                              className={`${styles.actionBtn} ${styles.deleteActionBtn}`}
-                              onClick={() => setDeletingProduct(product)}
-                              title="Delete product"
-                            >
-                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                              </svg>
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                      <div className={styles.cardFooter}>
+                        <div className={styles.btnGroup}>
+                          <Link href={`/product/${product.id}`} target="_blank" className={styles.btnActionOutline} title="View in Store">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            Details
+                          </Link>
+                          <button type="button" className={styles.btnActionOutline} onClick={() => handleOpenEditModal(product)} title="Edit Product">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                            Edit
+                          </button>
+                        </div>
+                        <button type="button" className={styles.btnActionDanger} onClick={() => setDeletingProduct(product)} title="Delete Product">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
           )}
         </section>
       </main>

@@ -26,7 +26,8 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await fetch('/api/products', { cache: 'no-store' });
+      setLoading(true);
+      const response = await fetch('/api/products?t=' + Date.now(), { cache: 'no-store' });
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data)) {

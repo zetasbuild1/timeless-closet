@@ -38,12 +38,6 @@ export default function AdminLoginPage() {
     checkExistingSession();
   }, [router]);
 
-  const handleQuickFill = () => {
-    setIdentifier('admin@timeless.com');
-    setPassword('admin123');
-    setError(null);
-  };
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -108,16 +102,6 @@ export default function AdminLoginPage() {
           </p>
         </div>
 
-        {/* Quick Fill Demo Helper */}
-        <div className={styles.demoBanner}>
-          <div className={styles.demoText}>
-            <strong>Demo Access:</strong> admin@timeless.com / admin123
-          </div>
-          <button type="button" className={styles.quickFillBtn} onClick={handleQuickFill}>
-            Auto Fill ⚡
-          </button>
-        </div>
-
         {/* Error notification */}
         {error && (
           <div className={styles.errorBanner}>
@@ -142,7 +126,7 @@ export default function AdminLoginPage() {
               <input
                 type="text"
                 required
-                placeholder="admin@timeless.com"
+                placeholder="admin@timeless2026!"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 className={styles.input}

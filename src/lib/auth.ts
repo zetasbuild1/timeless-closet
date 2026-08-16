@@ -1,7 +1,7 @@
 export const ADMIN_CONFIG = {
-  email: 'admin@timeless.com',
+  email: process.env.ADMIN_EMAIL || 'admin@timeless2026!',
   username: 'admin',
-  password: 'admin123',
+  password: process.env.ADMIN_PASSWORD || 'admin123',
   name: 'Timeless Administrator',
   role: 'admin',
 };

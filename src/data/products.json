@@ -107,37 +107,6 @@
     "reviews": 0
   },
   {
-    "id": "1",
-    "name": "The Evergreen Shirt",
-    "price": 3750,
-    "image": "/images/products/evergreen-shirt1.webp",
-    "hoverImage": "/images/products/evergreen-shirt2.webp",
-    "images": [
-      "/images/products/evergreen-shirt1.webp",
-      "/images/products/evergreen-shirt2.webp",
-      "/images/products/evergreen-shirt3.webp"
-    ],
-    "category": "Shirts",
-    "sizes": [
-      "S",
-      "M",
-      "L"
-    ],
-    "colors": [
-      "#89ac8c"
-    ],
-    "gender": "Men",
-    "isNew": true,
-    "rating": 4.8,
-    "reviews": 16,
-    "description": "Timeless. Easy. Made to wear for years. Perfect for everyday wear.",
-    "details": [
-      "Premium handpicked quality",
-      "WhatsApp to order: +94 76 867 8104",
-      "Cash on Delivery | Bank Deposits"
-    ]
-  },
-  {
     "id": "2",
     "name": "Floral Peplum Top",
     "price": 1950,

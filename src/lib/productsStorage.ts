@@ -42,8 +42,11 @@ async function saveLocalProducts(products: Product[]): Promise<boolean> {
   try {
     await fs.writeFile(dataFilePath, JSON.stringify(products, null, 2), 'utf-8');
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to save products to products.json:', error);
+    if (error.code === 'EROFS') {
+      throw new Error('Read-only filesystem detected. Please configure Firebase for live deployments.');
+    }
     return false;
   }
 }
@@ -118,7 +121,8 @@ export async function addProduct(product: Omit<Product, 'id'> & { id?: string })
 
   const products = await getLocalProducts();
   const updatedProducts = [newProduct, ...products.filter(p => p.id !== id)];
-  await saveLocalProducts(updatedProducts);
+  const saved = await saveLocalProducts(updatedProducts);
+  if (!saved) throw new Error('Failed to save product locally');
   return newProduct;
 }
 
@@ -160,7 +164,8 @@ export async function updateProduct(id: string, updates: Partial<Product>): Prom
   }
 
   products[index] = updated;
-  await saveLocalProducts(products);
+  const saved = await saveLocalProducts(products);
+  if (!saved) throw new Error('Failed to update product locally');
   return updated;
 }
 
@@ -188,7 +193,8 @@ export async function deleteProduct(id: string): Promise<boolean> {
   if (filtered.length === products.length) {
     return false;
   }
-  await saveLocalProducts(filtered);
+  const saved = await saveLocalProducts(filtered);
+  if (!saved) throw new Error('Failed to delete product locally');
   return true;
 }
 

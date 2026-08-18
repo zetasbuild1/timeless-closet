@@ -126,7 +126,7 @@ export default function AdminLoginPage() {
               <input
                 type="text"
                 required
-                placeholder="admin@timeless2026!"
+                placeholder="Enter email or username"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 className={styles.input}
@@ -145,7 +145,7 @@ export default function AdminLoginPage() {
               <input
                 type={showPassword ? 'text' : 'password'}
                 required
-                placeholder="••••••••"
+                placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className={styles.input}

@@ -39,8 +39,8 @@ export async function POST(request: Request) {
     } else {
       return NextResponse.json({ success: false, message: web3Data.message || 'Failed to send message.' }, { status: 400 });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('API Error:', error);
-    return NextResponse.json({ success: false, message: 'Server Error' }, { status: 500 });
+    return NextResponse.json({ success: false, message: `Server Error: ${error?.message || error}` }, { status: 500 });
   }
 }

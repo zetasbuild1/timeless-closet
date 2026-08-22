@@ -1,8 +1,47 @@
+"use client";
+
+import React, { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import styles from "./Contact.module.css";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!recaptchaRef.current) return;
+    
+    setStatus("loading");
+    try {
+      const token = await recaptchaRef.current.executeAsync();
+      
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, formData })
+      });
+      
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message: " + data.message);
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred. Please try again.");
+      setStatus("error");
+    } finally {
+      recaptchaRef.current?.reset();
+    }
+  };
+
   return (
     <div className={`container ${styles.contactPage}`}>
       <div className={styles.breadcrumbs}>
@@ -38,32 +77,64 @@ export default function ContactPage() {
                 <p className={styles.itemText}>+94 76 867 8104</p>
               </div>
             </div>
-
-
           </div>
         </div>
 
         <div className={styles.formContent}>
-          <form className={styles.contactForm}>
-            <div className={styles.formGroup}>
-              <label>Name</label>
-              <input type="text" placeholder="Your name" required />
+          {status === "success" ? (
+            <div style={{ padding: "2rem", textAlign: "center", backgroundColor: "#f0fff4", color: "#2f855a", borderRadius: "8px", border: "1px solid #c6f6d5" }}>
+              <h3 style={{ marginBottom: "1rem" }}>Thank you!</h3>
+              <p style={{ marginBottom: "1.5rem" }}>Your message has been sent successfully. We will get back to you soon.</p>
+              <Button variant="primary" onClick={() => setStatus("idle")}>
+                Send Another Message
+              </Button>
             </div>
-            
-            <div className={styles.formGroup}>
-              <label>Email</label>
-              <input type="email" placeholder="Your email address" required />
-            </div>
-            
-            <div className={styles.formGroup}>
-              <label>Message</label>
-              <textarea placeholder="How can we help you?" rows={5} required></textarea>
-            </div>
-            
-            <Button variant="primary" size="lg" fullWidth>
-              SEND MESSAGE
-            </Button>
-          </form>
+          ) : (
+            <form className={styles.contactForm} onSubmit={handleSubmit}>
+              <div className={styles.formGroup}>
+                <label>Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Your name" 
+                  required 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
+              </div>
+              
+              <div className={styles.formGroup}>
+                <label>Email</label>
+                <input 
+                  type="email" 
+                  placeholder="Your email address" 
+                  required 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                />
+              </div>
+              
+              <div className={styles.formGroup}>
+                <label>Message</label>
+                <textarea 
+                  placeholder="How can we help you?" 
+                  rows={5} 
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                ></textarea>
+              </div>
+              
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                size="invisible"
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+              />
+              
+              <Button variant="primary" size="lg" fullWidth disabled={status === "loading"}>
+                {status === "loading" ? "SENDING..." : "SEND MESSAGE"}
+              </Button>
+            </form>
+          )}
         </div>
       </div>
     </div>

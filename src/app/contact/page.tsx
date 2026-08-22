@@ -26,11 +26,37 @@ export default function ContactPage() {
       });
       
       const data = await res.json();
-      if (data.success) {
+      
+      if (!data.success || !data.web3Key) {
+        alert("Failed to verify: " + data.message);
+        setStatus("error");
+        return;
+      }
+
+      // 2. reCAPTCHA passed! Now send directly to Web3Forms from the browser
+      // This bypasses Vercel -> Cloudflare blocking issues.
+      const web3FormData = {
+        ...formData,
+        access_key: data.web3Key,
+        subject: "New Contact Form Submission - Timeless Closet"
+      };
+
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(web3FormData)
+      });
+
+      const web3Data = await web3Res.json();
+
+      if (web3Data.success) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert("Failed to send message: " + data.message);
+        alert("Failed to send message: " + (web3Data.message || "Unknown error"));
         setStatus("error");
       }
     } catch (err) {

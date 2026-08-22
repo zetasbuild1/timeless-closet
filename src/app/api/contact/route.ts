@@ -26,36 +26,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'reCAPTCHA verification failed.' }, { status: 400 });
     }
 
-    const web3FormData = { 
-      ...formData, 
-      access_key: process.env.WEB3FORMS_ACCESS_KEY,
-      subject: "New Contact Form Submission - Timeless Closet"
-    };
-
-    const web3Res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json', 
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        'Referer': 'https://timelesscloset.lk/'
-      },
-      body: JSON.stringify(web3FormData),
+    // Instead of sending to Web3Forms from the server (which gets blocked by Cloudflare),
+    // we return the access key to the client so the browser can send it directly.
+    return NextResponse.json({ 
+      success: true, 
+      message: 'reCAPTCHA verified',
+      web3Key: process.env.WEB3FORMS_ACCESS_KEY 
     });
-    
-    const web3Text = await web3Res.text();
-    let web3Data;
-    try {
-      web3Data = JSON.parse(web3Text);
-    } catch (e) {
-      throw new Error(`Web3Forms API returned non-JSON: ${web3Text.substring(0, 100)}`);
-    }
-    
-    if (web3Data.success) {
-      return NextResponse.json({ success: true, message: 'Message sent successfully!' });
-    } else {
-      return NextResponse.json({ success: false, message: web3Data.message || 'Failed to send message.' }, { status: 400 });
-    }
+
   } catch (error: any) {
     console.error('API Error:', error);
     return NextResponse.json({ success: false, message: `Server Error: ${error?.message || error}` }, { status: 500 });

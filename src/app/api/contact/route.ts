@@ -14,7 +14,13 @@ export async function POST(request: Request) {
       body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
     });
     
-    const recaptchaData = await recaptchaRes.json();
+    const recaptchaText = await recaptchaRes.text();
+    let recaptchaData;
+    try {
+      recaptchaData = JSON.parse(recaptchaText);
+    } catch (e) {
+      throw new Error(`reCAPTCHA API returned non-JSON: ${recaptchaText.substring(0, 100)}`);
+    }
     
     if (!recaptchaData.success) {
       return NextResponse.json({ success: false, message: 'reCAPTCHA verification failed.' }, { status: 400 });
@@ -32,7 +38,13 @@ export async function POST(request: Request) {
       body: JSON.stringify(web3FormData),
     });
     
-    const web3Data = await web3Res.json();
+    const web3Text = await web3Res.text();
+    let web3Data;
+    try {
+      web3Data = JSON.parse(web3Text);
+    } catch (e) {
+      throw new Error(`Web3Forms API returned non-JSON: ${web3Text.substring(0, 100)}`);
+    }
     
     if (web3Data.success) {
       return NextResponse.json({ success: true, message: 'Message sent successfully!' });

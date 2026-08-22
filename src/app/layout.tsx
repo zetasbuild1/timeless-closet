@@ -8,8 +8,18 @@ const outfit = Outfit({ subsets: ["latin"] });
 const greatVibes = Great_Vibes({ weight: '400', subsets: ['latin'], variable: '--font-logo' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://timelesscloset.lk"),
   title: "Timeless. | Modern Style",
   description: "E-Commerce Clothing Shop",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
